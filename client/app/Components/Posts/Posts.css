@@ -1,0 +1,14 @@
+.posts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation-name:fade-up;
+  animation-duration:1s;
+}
+
+.posts h1 {
+  padding: 30px 0px 20px 0px;
+  color: white;
+  font-weight: 100;
+}

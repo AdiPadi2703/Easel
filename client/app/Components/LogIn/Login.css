@@ -1,0 +1,81 @@
+.login-form {
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  animation-name:fade-up;
+  animation-duration: 1s;
+}
+
+
+.login-box {
+  background-color: white;
+  border-radius: 20px;
+  height: auto;
+  width: min(400px, 80%);
+  margin-top: 30px;
+  padding: 40px 0px 40px 0px;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.login-form h1 {
+  padding: 30px 0px 20px 0px;
+  color: white;
+  font-weight: 100;
+}
+
+.login-box h3 {
+  padding: 20px 0 10px 10px;
+  font-weight: 200;
+}
+
+.GoogleAuth {
+  margin: 0 auto 10px auto;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  border: none;
+}
+
+.GoogleAuth:hover {
+  background-color: rgb(34, 32, 32);
+}
+
+.login-box form input {
+  border: 1px solid rgb(139, 135, 135);
+  background-color: rgba(252, 252, 252, 0.2);
+  width: min(500px, 80%);
+  border-radius: 3px;
+  font-family: "Poppins", serif;
+  padding: 10px 15px;
+  margin: 0 auto 10px auto;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: black;
+  font-weight: 300;
+}
+
+.login-box form button {
+  border: 1px solid rgb(139, 135, 135);
+  background-color: rgba(252, 252, 252, 0.2);
+  width: min(500px, 80%);
+  border-radius: 3px;
+  font-family: "Poppins", serif;
+  padding: 10px 15px;
+  margin: 0 auto 10px auto;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  font-weight: 300;
+}
+
+.login-box form button:hover {
+  color: white;
+  background-color: rgb(34, 32, 32);
+}
+
+
