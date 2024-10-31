@@ -7,13 +7,16 @@ cloudinary.config({
 });
 
 export async function POST(req) {
-  const body = await req.json();
-  const { paramsToSign } = body;
+  const timestamp = Math.round(new Date().getTime() / 1000);
+  const paramsToSign = {
+    timestamp,
+    upload_preset: process.env.CLOUDINARY_UPLOAD_PRESET,
+  };
 
   const signature = cloudinary.utils.api_sign_request(
     paramsToSign,
     process.env.CLOUDINARY_API_SECRET
   );
 
-  return Response.json({ signature });
+  return Response.json({ signature, timestamp });
 }
