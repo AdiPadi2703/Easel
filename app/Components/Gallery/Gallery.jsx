@@ -24,6 +24,8 @@ function Gallery() {
     "https://cdn.pixabay.com/photo/2023/04/05/07/04/portrait-7900797_640.jpg",
     "https://i.etsystatic.com/11855537/r/il/7b331a/3887123545/il_fullxfull.3887123545_cpll.jpg",
     "https://i.etsystatic.com/16500849/r/il/d9227a/2110691797/il_570xN.2110691797_37gl.jpg",
+    "https://res.cloudinary.com/dlnsfm5yp/image/upload/v1730346646/h8ewyd9my6p22rjn9kxq.png"
+    
   ];
 
   function togglePrompt() {

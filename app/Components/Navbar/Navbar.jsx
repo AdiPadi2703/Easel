@@ -57,6 +57,14 @@ function Navbar(props) {
                 Log In
               </Link>
             </li>
+            <li>
+              <Link
+                className={props.tab === "admin" ? "active" : null}
+                href="/Admin"
+              >
+                Admin
+              </Link>
+            </li>
           </ul>
           <div className="icon" onClick={toggleHamburger}>
             <FaBars />
