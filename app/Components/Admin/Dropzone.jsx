@@ -1,16 +1,17 @@
 "use client";
-import React, { useCallback } from "react";
+import React from "react";
 import { useDropzone } from "react-dropzone";
 import { MdOutlineFileUpload } from "react-icons/md";
-
-import Image from "next/image";
 import "./Dropzone.css";
+import Image from "next/image";
 
 function Dropzone() {
+  const [blob, setBlob] = React.useState(null);
+
   const [files, setFiles] = React.useState([]);
   const [rejected, setRejected] = React.useState([]);
 
-  const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
+  const onDrop = React.useCallback((acceptedFiles, rejectedFiles) => {
     if (acceptedFiles?.length) {
       setFiles((previousFiles) => [
         ...previousFiles,
@@ -49,40 +50,27 @@ function Dropzone() {
     setRejected((files) => files.filter(({ file }) => file.name !== name));
   };
 
-  async function uploadToCloud(event) {
+  async function uploadToBlob(event) {
     event.preventDefault();
+    if (files?.length) {
+      const file = files[0];
+      const response = await fetch(
+        `/api/sign-vercel-blob-params?filename=${file.name}`,
+        {
+          method: "POST",
+          body: file,
+        }
+      );
 
-    if (!files?.length) {
-      return;
+      const newBlob = await response.json();
+      setBlob(newBlob);
+    } else {
+      console.log("No files to upload...");
     }
-
-    const response = await fetch("/api/sign-cloudinary-params", {
-      method: "POST",
-    });
-    const { signature, timestamp } = await response.json();
-
-    const formData = new FormData();
-    files.forEach((file) => formData.append("file", file));
-    formData.append("upload_preset", "ml_default");
-    formData.append("timestamp", timestamp);
-    formData.append("signature", signature);
-    formData.append("api_key", process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
-    formData.append(
-      "cloud_name",
-      process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-    );
-
-    const URL = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
-    const data = await fetch(URL, {
-      method: "POST",
-      body: formData,
-    }).then((res) => res.json());
-
-    console.log(data);
   }
 
   return (
-    <form className="drop-form" onSubmit={uploadToCloud}>
+    <form className="drop-form" onSubmit={uploadToBlob}>
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         {isDragActive ? (
@@ -101,7 +89,6 @@ function Dropzone() {
           </div>
         )}
       </div>
-
       <div className="button">
         <button type="button" onClick={removeAll}>
           Remove All Files
