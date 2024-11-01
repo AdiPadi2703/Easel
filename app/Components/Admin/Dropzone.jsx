@@ -2,11 +2,11 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { MdOutlineFileUpload } from "react-icons/md";
-import { CldUploadWidget } from "next-cloudinary";
 
 import Image from "next/image";
+import "./Dropzone.css";
 
-function Dropzone(props) {
+function Dropzone() {
   const [files, setFiles] = React.useState([]);
   const [rejected, setRejected] = React.useState([]);
 
@@ -63,8 +63,9 @@ function Dropzone(props) {
 
     const formData = new FormData();
     files.forEach((file) => formData.append("file", file));
-    formData.append("upload_preset", "easel_images");
+    formData.append("upload_preset", "ml_default");
     formData.append("timestamp", timestamp);
+    formData.append("signature", signature);
     formData.append("api_key", process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
     formData.append(
       "cloud_name",
@@ -82,26 +83,22 @@ function Dropzone(props) {
 
   return (
     <form className="drop-form" onSubmit={uploadToCloud}>
-      <div
-        {...getRootProps({
-          className: props.className,
-        })}
-      >
+      <div {...getRootProps()}>
         <input {...getInputProps()} />
         {isDragActive ? (
-          <p>
+          <div className="upload-box">
             <MdOutlineFileUpload className="upload-icon" />
             <br />
             Drop the files here ...
             <br />
             <br />
-          </p>
+          </div>
         ) : (
-          <p>
+          <div className="upload-box">
             <MdOutlineFileUpload className="upload-icon" />
             <br />
-            Drag 'n' drop some files here, or click to select files
-          </p>
+            Drag 'n' drop your image here, or click to browse
+          </div>
         )}
       </div>
 
@@ -114,9 +111,9 @@ function Dropzone(props) {
         <button type="submit">Upload</button>
       </div>
 
-      <div className="upload-list" style={{ color: "white" }}>
+      <div className="upload-list">
         <h3 style={{ fontWeight: "200" }}>Accepted Files:</h3>
-        <ul>
+        <ul style={{ listStyle: "none" }}>
           {files.map((file) => (
             <li key={file.name}>
               {file.name}
@@ -141,10 +138,7 @@ function Dropzone(props) {
         </ul>
       </div>
 
-      <div
-        className="rejected-files"
-        style={{ color: "white", textAlign: "center" }}
-      >
+      <div className="rejected-files">
         <h3 style={{ fontWeight: "200" }}>Rejected Files:</h3>
         <ul style={{ listStyle: "none" }}>
           {rejected.map(({ file, errors }) => (

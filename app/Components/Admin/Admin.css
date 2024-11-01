@@ -25,25 +25,5 @@
     font-weight: 100;
 }
 
-.admin-box button{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    margin: 0 auto;
-    width: 50%;
-    border:1px solid rgb(139, 135, 135);
-    border-radius:3px;
-    background-color: white;
-    font-size: 18px;
-    font-weight: 300;
-}
 
-.admin-box button:hover {
-    color:white;
-    background-color: rgba(34, 32, 32);
-}
 
-.upload-icon {
-    font-size: 20;
-}
