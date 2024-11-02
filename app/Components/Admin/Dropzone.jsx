@@ -63,6 +63,13 @@ function Dropzone() {
       );
 
       const newBlob = await response.json();
+
+      const imageURL = newBlob.url;
+      const userID = 4283;
+      await fetch(`/api/add-images?imageURL=${imageURL}&userID=${userID}`, {
+        method: "GET",
+      });
+
       setBlob(newBlob);
     } else {
       console.log("No files to upload...");

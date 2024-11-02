@@ -3,16 +3,17 @@ import { NextResponse } from "next/server";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const petName = searchParams.get("petName");
-  const ownerName = searchParams.get("ownerName");
+  const imageURL = searchParams.get("imageURL");
+  const userID = searchParams.get("userID");
 
   try {
-    if (!petName || !ownerName) throw new Error("Pet and owner names required");
-    await sql`INSERT INTO Pets (Name, Owner) VALUES (${petName}, ${ownerName});`;
+    if (!imageURL || !userID)
+      throw new Error("userID and imageURL names required");
+    await sql`INSERT INTO Images (image_url, user_id) VALUES (${imageURL}, ${userID});`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
 
-  const pets = await sql`SELECT * FROM Pets;`;
-  return NextResponse.json({ pets }, { status: 200 });
+  const images = await sql`SELECT * FROM Images;`;
+  return NextResponse.json({ images }, { status: 200 });
 }
