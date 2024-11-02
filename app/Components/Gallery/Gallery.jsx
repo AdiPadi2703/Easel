@@ -39,7 +39,7 @@ function Gallery() {
   }
 
   React.useEffect(() => {
-    getImages(controller);
+    getImages();
   }, []);
 
   function togglePrompt() {
