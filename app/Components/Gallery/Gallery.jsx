@@ -3,11 +3,11 @@ import React from "react";
 import { IoClose } from "react-icons/io5";
 import "./Gallery.css";
 
-function Gallery() {
+function Gallery(props) {
   const [curr_image, setCurrImage] = React.useState("");
   const [show_prompt, setShowPrompt] = React.useState(false);
   const [view_image, setViewImage] = React.useState(false);
-  const [images, setImages] = React.useState([]);
+  const images = props.images;
 
   // const images = [
   //   "https://blog.sabrillu.com/wp-content/uploads/2020/11/dscf6574.jpg",
@@ -28,19 +28,6 @@ function Gallery() {
   //   "https://res.cloudinary.com/dlnsfm5yp/image/upload/v1730346646/h8ewyd9my6p22rjn9kxq.png"
 
   // ];
-
-  async function getImages() {
-    const response = await fetch(`/api/get-images/`, {
-      method: "GET",
-    });
-    const response_json = await response.json();
-    console.log(response_json.images.rows);
-    setImages(response_json.images.rows);
-  }
-
-  React.useEffect(() => {
-    getImages();
-  }, []);
 
   function togglePrompt() {
     setShowPrompt(!show_prompt);

@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Dropzone from "./Dropzone";
 import "./Admin.css";

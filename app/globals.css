@@ -28,6 +28,12 @@ body {
 
 }
 
+@keyframes loading-animation {
+  0%{scale: 0%;}
+  50%{scale: 100%;}
+  100%{scale: 0%;}
+}
+
 @keyframes fade-down {
   0%{transform:translateY(-50px); opacity: 0%;}
   100%{transform: translateY(0px); opacity: 100%;}
