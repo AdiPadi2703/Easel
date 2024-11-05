@@ -12,3 +12,15 @@
   color: white;
   font-weight: 100;
 }
+
+@media (min-width: 600px){
+  .posts {
+    margin-left: 4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .posts {
+    margin-top: 4rem;
+  }
+}

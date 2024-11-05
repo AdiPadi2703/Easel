@@ -40,7 +40,7 @@
 }
 
 .GoogleAuth:hover {
-  background-color: rgb(34, 32, 32);
+  background-color: var(--bgcolor);
 }
 
 .login-box form input {
@@ -75,7 +75,19 @@
 
 .login-box form button:hover {
   color: white;
-  background-color: rgb(34, 32, 32);
+  background-color: var(--bgcolor);
 }
 
+
+@media (min-width: 600px){
+  .login-form {
+    margin-left: 4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-form {
+    margin-top: 4rem;
+  }
+}
 

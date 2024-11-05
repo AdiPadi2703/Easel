@@ -39,7 +39,7 @@
 }
 
 .GoogleAuth:hover {
-  background-color: rgb(34, 32, 32);
+  background-color: black;
 }
 
 .signup-box form input {
@@ -74,6 +74,18 @@
 
 .signup-box form button:hover {
   color: white;
-  background-color: rgba(34, 32, 32);
+  background-color: black;
+}
+
+@media (min-width: 600px){
+  .signup-form {
+    margin-left: 4rem;
+  }
+}
+
+@media(max-width: 600px) {
+  .signup-form {
+    margin-top: 4rem;
+  }
 }
 

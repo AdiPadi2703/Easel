@@ -3,26 +3,35 @@
 }
 
 .drop-form .upload-box {
+    cursor:pointer;
     border: solid 1px rgb(139, 135, 135);
     border-radius: 3px;
+    padding: 10px;
+    font-weight: 200;
+    font-size: 18px;
 }
 
 .drop-form > * {
     padding: 10px;
+    font-weight: 200;
+    font-size: 18px;
 }
 
 .drop-form button {
+    cursor: pointer;
     border: solid 1px rgb(139, 135, 135);
     background-color: white;
+    font-weight: 200;
+    font-size: 18px;
     padding: 10px 15px;
 }
 
 .drop-form .upload-box:hover{
     color: white;
-    background-color: rgba(34, 32, 32);
+    background-color: var(--bgcolor);
 }
 
 .drop-form button:hover{
     color: white;
-    background-color: rgba(34, 32, 32);
+    background-color: var(--bgcolor);
 }
