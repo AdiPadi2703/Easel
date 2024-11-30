@@ -4,10 +4,13 @@ import Gallery from "../Components/Gallery/Gallery";
 
 async function GalleryPage() {
   async function getImages() {
-    const response = await fetch(`http://localhost:3000/api/get-images/`, {
-      method: "GET",
-      next: { revalidate: 3600 },
-    });
+    const response = await fetch(
+      `https://easel-alpha.vercel.app/api/get-images/`,
+      {
+        method: "GET",
+        next: { revalidate: 3600 },
+      }
+    );
     const response_json = await response.json();
     return response_json.images.rows;
   }
