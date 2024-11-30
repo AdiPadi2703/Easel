@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/elements": "^0.19.8",
+    "@clerk/nextjs": "^6.5.0",
     "@vercel/blob": "^0.25.1",
     "@vercel/postgres": "^0.10.0",
     "bcrypt": "^5.1.1",
@@ -23,6 +25,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/react": "18.3.12",
     "eslint": "^8",
     "eslint-config-next": "15.0.1"
   }

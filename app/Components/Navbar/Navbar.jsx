@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { MdLogin } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
@@ -9,6 +8,7 @@ import { FaFilePen } from "react-icons/fa6";
 
 import "./Navbar.css";
 import Link from "next/link";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 function Navbar(props) {
   return (
@@ -52,27 +52,39 @@ function Navbar(props) {
           </Link>
         </li>
         <li className="nav-item">
-          <Link
-            className={props.tab === "login" ? "active" : null}
-            href="/Login"
-          >
+          <SignedOut>
+            <Link
+              className={props.tab === "login" ? "active" : null}
+              href="/Login"
+            >
+              <div className="link-item">
+                <MdLogin className="icon" />
+                <div className="link-text">Log In</div>
+              </div>
+            </Link>
+          </SignedOut>
+          <SignedIn>
             <div className="link-item">
-              <MdLogin className="icon" />
-              <div className="link-text">Log In</div>
+              <div className="user-icon">
+                <UserButton />
+              </div>
+              <div className="link-text">User</div>
             </div>
-          </Link>
+          </SignedIn>
         </li>
-        <li className="nav-item">
-          <Link
-            className={props.tab === "signup" ? "active" : null}
-            href="/Signup"
-          >
-            <div className="link-item">
-              <FaFilePen className="icon" />
-              <div className="link-text">Sign Up</div>
-            </div>
-          </Link>
-        </li>
+        <SignedOut>
+          <li className="nav-item">
+            <Link
+              className={props.tab === "signup" ? "active" : null}
+              href="/Signup"
+            >
+              <div className="link-item">
+                <FaFilePen className="icon" />
+                <div className="link-text">Sign Up</div>
+              </div>
+            </Link>
+          </li>
+        </SignedOut>
         <li className="nav-item">
           <Link
             className={props.tab === "admin" ? "active" : null}

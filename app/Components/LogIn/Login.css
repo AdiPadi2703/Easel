@@ -31,18 +31,6 @@
   font-weight: 200;
 }
 
-.GoogleAuth {
-  margin: 0 auto 10px auto;
-  height: 50px;
-  width: 50px;
-  border-radius: 100%;
-  border: none;
-}
-
-.GoogleAuth:hover {
-  background-color: var(--bgcolor);
-}
-
 .login-box form input {
   border: 1px solid rgb(139, 135, 135);
   background-color: rgba(252, 252, 252, 0.2);
@@ -58,7 +46,8 @@
   font-weight: 300;
 }
 
-.login-box form button {
+button {
+  cursor:pointer;
   border: 1px solid rgb(139, 135, 135);
   background-color: rgba(252, 252, 252, 0.2);
   width: min(500px, 80%);
@@ -69,11 +58,23 @@
   display: block;
   text-align: center;
   font-size: 18px;
-  color: rgb(0, 0, 0);
+  color: black;
   font-weight: 300;
 }
 
-.login-box form button:hover {
+.ref-link {
+  color: black;
+}
+
+.auth-icon{
+  height: 25px;
+  width: 25px;
+}
+
+button:hover{
+  .ref-link {
+    color:white;
+  }
   color: white;
   background-color: var(--bgcolor);
 }

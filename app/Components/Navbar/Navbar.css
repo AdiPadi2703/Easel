@@ -41,6 +41,11 @@ a {
   margin: 0 1.5rem;
 }
 
+.user-icon {
+  max-width: 2rem;
+  margin: 0 1rem;
+}
+
 .logo .link-text{
   cursor:pointer;
   flex-basis: 80%;

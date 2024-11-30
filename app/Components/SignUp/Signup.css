@@ -30,16 +30,9 @@
   font-weight: 200;
 }
 
-.GoogleAuth {
-  margin: 0 auto 10px auto;
-  height: 50px;
-  width: 50px;
-  border-radius: 100%;
-  border: none;
-}
-
-.GoogleAuth:hover {
-  background-color: black;
+.auth-icon{
+  height: 25px;
+  width: 25px;
 }
 
 .signup-box form input {
