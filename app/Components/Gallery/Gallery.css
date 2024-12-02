@@ -124,8 +124,8 @@
 
 .overlay-image .view-exit-button {
   cursor: pointer;
-  top: 5%;
-  right: 5%;
+  top: 10%;
+  right: 10%;
   color: white;
   background-color: rgba(0, 0, 0, 0);
   border: none;
@@ -156,6 +156,3 @@
     margin-top: 4rem;
   }
 }
-
-
-

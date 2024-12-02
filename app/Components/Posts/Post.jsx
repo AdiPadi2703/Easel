@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import { AiFillLike } from "react-icons/ai";
 import { TiHeartOutline } from "react-icons/ti";
@@ -105,7 +105,7 @@ function Post(props) {
             {comments.map((comment, index) => {
               return (
                 <li key={index}>
-                  <Comment 
+                  <Comment
                     username={comment.username}
                     comment={comment.comment}
                   />

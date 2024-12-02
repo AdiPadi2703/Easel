@@ -2,6 +2,8 @@
 import React from "react";
 import { IoClose } from "react-icons/io5";
 import "./Gallery.css";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import Link from "next/link";
 
 function Gallery(props) {
   const [curr_image, setCurrImage] = React.useState("");
@@ -75,7 +77,16 @@ function Gallery(props) {
             <button className="prompt-button" onClick={toggleView}>
               View Image
             </button>
-            <button className="prompt-button">View Post</button>
+            <SignedIn>
+              <button className="prompt-button">View Post</button>
+            </SignedIn>
+            <SignedOut>
+              <button className="prompt-button">
+                <Link style={{ color: "black" }} href="/Login">
+                  Login to view posts!
+                </Link>
+              </button>
+            </SignedOut>
           </div>
         </div>
       ) : null}
