@@ -2,29 +2,31 @@
 import React from "react";
 import { useDropzone } from "react-dropzone";
 import { MdOutlineFileUpload } from "react-icons/md";
+import { FaCircle } from "react-icons/fa";
 import "./Dropzone.css";
 import Image from "next/image";
 
 function Dropzone() {
   const [blob, setBlob] = React.useState(null);
-
-  const [files, setFiles] = React.useState([]);
+  const [success, setSuccess] = React.useState(0);
+  const [file, setFile] = React.useState(null);
   const [rejected, setRejected] = React.useState([]);
 
   const onDrop = React.useCallback((acceptedFiles, rejectedFiles) => {
     if (acceptedFiles?.length) {
-      setFiles((previousFiles) => [
-        ...previousFiles,
-        ...acceptedFiles.map((file) =>
-          Object.assign(file, { preview: URL.createObjectURL(file) })
-        ),
-      ]);
+      const newFile = acceptedFiles[0];
+      setFile(
+        Object.assign(newFile, { preview: URL.createObjectURL(newFile) })
+      );
     }
 
     if (rejectedFiles?.length) {
       setRejected((previousFiles) => [...previousFiles, ...rejectedFiles]);
     }
+
+    setSuccess(0);
   }, []);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
       "image/*": [],
@@ -34,15 +36,18 @@ function Dropzone() {
   });
 
   React.useEffect(() => {
-    return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
-  }, [files]);
+    return () => {
+      if (file) {
+        URL.revokeObjectURL(file.preview);
+      }
+    };
+  }, [file]);
 
-  const removeFile = (name) => {
-    setFiles((files) => files.filter((file) => file.name !== name));
-  };
-
-  const removeAll = () => {
-    setFiles([]);
+  const removeFile = () => {
+    if (file) {
+      URL.revokeObjectURL(file.preview);
+    }
+    setFile(null);
     setRejected([]);
   };
 
@@ -50,10 +55,34 @@ function Dropzone() {
     setRejected((files) => files.filter(({ file }) => file.name !== name));
   };
 
+  function successMessageRender() {
+    if (success === 0) {
+      return null;
+    } else if (success === 1) {
+      return (
+        <div className="upload-loading-icon">
+          <h3 style={{ fontSize: "18px", fontWeight: "200" }}>
+            Uploading File...
+          </h3>
+          <FaCircle className="upload-loading-circle" />
+        </div>
+      );
+    } else if (success == 2) {
+      return (
+        <div>
+          <h3 style={{ fontSize: "18px", fontWeight: "200" }}>
+            File successfully uploaded!
+          </h3>
+        </div>
+      );
+    }
+  }
+
   async function uploadToBlob(event) {
     event.preventDefault();
-    if (files?.length) {
-      const file = files[0];
+    if (file) {
+      setSuccess(1);
+
       const response = await fetch(
         `/api/sign-vercel-blob-params?filename=${file.name}`,
         {
@@ -65,18 +94,16 @@ function Dropzone() {
       const newBlob = await response.json();
 
       const imageURL = newBlob.url;
-      const userID = 4283;
-
-      // add some loading thing here...
+      const userID = 4283; // should pertain to the user signed in...
 
       await fetch(`/api/add-images?imageURL=${imageURL}&userID=${userID}`, {
         method: "GET",
       });
       setBlob(newBlob);
-
-      // add some notification here indicating success...
+      setSuccess(2);
+      removeFile();
     } else {
-      console.log("No files to upload...");
+      console.log("No file to upload...");
     }
   }
 
@@ -100,44 +127,36 @@ function Dropzone() {
           </div>
         )}
       </div>
+
       <div className="button">
-        <button type="button" onClick={removeAll}>
-          Remove All Files
-        </button>
-      </div>
-      <div className="button">
-        <button type="submit">Upload</button>
+        {file ? <button type="submit">Upload</button> : null}
       </div>
 
       <div className="upload-list">
-        <h3 style={{ fontWeight: "200" }}>Accepted Files:</h3>
-        <ul style={{ listStyle: "none" }}>
-          {files.map((file) => (
-            <li key={file.name}>
-              {file.name}
-              <br />
-              <Image
-                src={file.preview}
-                height={100}
-                width={100}
-                alt={file.name}
-                onLoad={() => {
-                  URL.revokeObjectURL(file.preview);
-                }}
-              ></Image>
-              <br />
-              <div className="button">
-                <button type="button" onClick={() => removeFile(file.name)}>
-                  Remove File
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
+        {file ? (
+          <>
+            {file.name}
+            <br />
+            <Image
+              src={file.preview}
+              height={100}
+              width={100}
+              alt={file.name}
+              onLoad={() => {
+                URL.revokeObjectURL(file.preview);
+              }}
+            />
+            <br />
+            <div className="button">
+              <button type="button" onClick={() => removeFile(file.name)}>
+                Remove File
+              </button>
+            </div>
+          </>
+        ) : null}
       </div>
 
       <div className="rejected-files">
-        <h3 style={{ fontWeight: "200" }}>Rejected Files:</h3>
         <ul style={{ listStyle: "none" }}>
           {rejected.map(({ file, errors }) => (
             <li key={file.name}>
@@ -149,6 +168,7 @@ function Dropzone() {
                   ))}
                 </ul>
               </div>
+              <br />
               <button type="button" onClick={() => removeRejected(file.name)}>
                 Remove File
               </button>
@@ -156,6 +176,8 @@ function Dropzone() {
           ))}
         </ul>
       </div>
+
+      {successMessageRender()}
     </form>
   );
 }

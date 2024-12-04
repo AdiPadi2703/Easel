@@ -35,3 +35,22 @@
     color: white;
     background-color: var(--bgcolor);
 }
+
+.upload-loading-icon {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+}
+
+.upload-loading-icon h3 {
+    padding-bottom: 30px;
+    color: black;
+    font-weight: 100;
+}
+
+.upload-loading-icon .upload-loading-circle {
+    color:black;
+    font-size: 200%;
+    animation: loading-animation 1s infinite;
+}
