@@ -85,17 +85,20 @@ function Navbar(props) {
             </Link>
           </li>
         </SignedOut>
-        <li className="nav-item">
-          <Link
-            className={props.tab === "admin" ? "active" : null}
-            href="/Admin"
-          >
-            <div className="link-item">
-              <FaUserCircle className="icon" />
-              <div className="link-text">Admin</div>
-            </div>
-          </Link>
-        </li>
+
+        <SignedIn>
+          <li className="nav-item">
+            <Link
+              className={props.tab === "admin" ? "active" : null}
+              href="/Admin"
+            >
+              <div className="link-item">
+                <FaUserCircle className="icon" />
+                <div className="link-text">Admin</div>
+              </div>
+            </Link>
+          </li>
+        </SignedIn>
       </ul>
     </nav>
   );

@@ -64,6 +64,26 @@ a {
 }
 
 
+@media(max-height: 400px){
+  .navbar {
+    overflow-y: scroll;
+  }
+
+  .navbar::-webkit-scrollbar-track {
+    background-color: black;
+  }
+
+  .navbar::-webkit-scrollbar-thumb {
+    background-color: white;
+  }
+
+  .navbar::-webkit-scrollbar {
+    width: 0rem;
+  }
+
+}
+
+
 @media(max-width: 600px){
 
   .navbar {
@@ -121,5 +141,3 @@ a {
 
   
 }
-
-
