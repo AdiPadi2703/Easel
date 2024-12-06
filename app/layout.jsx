@@ -1,5 +1,6 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
+import Footer from "./Components/Footer/Footer";
 
 export const metadata = {
   title: "Easel",
@@ -16,7 +17,10 @@ export default function RootLayout({ children }) {
       </head>
       <ClerkProvider>
         <body>
-          <div id="root">{children}</div>
+          <div className="holder">
+            <div id="root">{children}</div>
+            <Footer />
+          </div>
         </body>
       </ClerkProvider>
     </html>

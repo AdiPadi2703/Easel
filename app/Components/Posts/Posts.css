@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 100px;
   animation-name:fade-up;
   animation-duration:1s;
 }

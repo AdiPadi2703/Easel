@@ -21,6 +21,7 @@
 /build
 
 # misc
+database.sql
 .DS_Store
 *.pem
 
