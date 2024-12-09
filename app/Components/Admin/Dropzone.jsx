@@ -96,9 +96,10 @@ function Dropzone() {
       const imageURL = newBlob.url;
       const userID = 4283; // should pertain to the user signed in...
 
-      await fetch(`/api/add-images?imageURL=${imageURL}&userID=${userID}`, {
+      await fetch(`/api/create-post?imageURL=${imageURL}&userID=${userID}`, {
         method: "GET",
       });
+
       setBlob(newBlob);
       setSuccess(2);
       removeFile();
@@ -129,7 +130,7 @@ function Dropzone() {
       </div>
 
       <div className="button">
-        {file ? <button type="submit">Upload</button> : null}
+        {file ? <button type="submit">Create Post</button> : null}
       </div>
 
       <div className="upload-list">
