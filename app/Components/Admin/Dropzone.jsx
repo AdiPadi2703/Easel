@@ -94,9 +94,8 @@ function Dropzone() {
       const newBlob = await response.json();
 
       const imageURL = newBlob.url;
-      const userID = 4283; // should pertain to the user signed in...
 
-      await fetch(`/api/create-post?imageURL=${imageURL}&userID=${userID}`, {
+      await fetch(`/api/create-post?imageURL=${imageURL}`, {
         method: "GET",
       });
 
