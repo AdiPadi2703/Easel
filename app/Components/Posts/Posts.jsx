@@ -16,7 +16,7 @@ async function Posts() {
           headers: {
             Authorization: `Bearer ${userId}`,
           },
-          next: { revalidate: 3600 },
+          next: { revalidate: 300 },
         }
       );
 

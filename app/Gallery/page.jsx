@@ -8,7 +8,7 @@ async function GalleryPage() {
       `https://easel-alpha.vercel.app/api/get-images/`,
       {
         method: "GET",
-        next: { revalidate: 3600 },
+        next: { revalidate: 300 },
       }
     );
     const response_json = await response.json();
