@@ -12,7 +12,11 @@ async function GalleryPage() {
       }
     );
     const response_json = await response.json();
-    return response_json.images.rows;
+    if (response_json?.images?.rows?.length > 0) {
+      return response_json.images.rows;
+    } else {
+      return [];
+    }
   }
 
   const images = await getImages();
