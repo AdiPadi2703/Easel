@@ -2,6 +2,7 @@
 import React from "react";
 import { IoClose } from "react-icons/io5";
 import "./Gallery.css";
+import Searchbar from "../Searchbar/Searchbar";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 
@@ -33,6 +34,7 @@ function Gallery(props) {
       <div className="gallery-heading">
         <h1>Gallery</h1>
       </div>
+      <Searchbar />
       <div className="gallery-images">
         <ul>
           {images.map((image, index) => {

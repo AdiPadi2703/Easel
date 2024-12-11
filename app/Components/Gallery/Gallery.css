@@ -1,4 +1,8 @@
 .gallery-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   animation-name:fade-up;
   animation-duration:1s;
 }

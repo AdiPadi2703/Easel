@@ -3,8 +3,9 @@ import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
+import { del } from "@vercel/blob";
 
-export async function POST(request : Request) {
+export async function POST(request) {
   const SIGNING_SECRET = process.env.SIGNING_SECRET;
 
   if (!SIGNING_SECRET) {
@@ -25,14 +26,14 @@ export async function POST(request : Request) {
   const payload = await request.json();
   const body = JSON.stringify(payload);
 
-  let event: WebhookEvent;
+  let event;
 
   try {
     event = webhook.verify(body, {
       "svix-id": svix_id,
       "svix-signature": svix_signature,
       "svix-timestamp": svix_timestamp,
-    }) as WebhookEvent;
+    });
   } catch (error) {
     console.error("Could not verify webhook", error);
     return new Response("Verification Error!", { status: 400 });
@@ -59,6 +60,14 @@ export async function POST(request : Request) {
       return new Response("Missing data", { status: 400 });
     } else {
       try {
+        const image_url_query_result =
+          await sql`SELECT image_url FROM Posts WHERE user_id = ${id};`;
+        const image_urls = image_url_query_result.rows;
+
+        if (image_urls?.length > 0) {
+          await del(image_urls.map((blob) => blob.image_url));
+        }
+
         await sql`DELETE FROM Comments WHERE user_id = ${id};`;
         await sql`DELETE FROM Posts WHERE user_id = ${id};`;
         await sql`DELETE FROM Users WHERE user_id = ${id};`;
