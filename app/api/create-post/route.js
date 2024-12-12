@@ -26,6 +26,8 @@ export async function GET(request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
+  // not safe... do not send posts to client component since it contains user_id
+
   const post = await sql`SELECT * FROM Posts WHERE post_id = ${postId};`;
   return NextResponse.json({ post }, { status: 200 });
 }

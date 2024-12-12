@@ -1,6 +1,13 @@
-.searchbar {
+.search-container {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-    padding: 20px;
+}
+
+.searchbar {
+    padding: 20px 20px 0px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,10 +15,28 @@
 
 }
 
+.drop-down{
+    text-align: left;
+    width: 45vw;
+    background-color: white;
+    padding-bottom: 5px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.drop-down ul {
+    list-style: none; 
+    width: 100%;
+}
+
+.drop-down ul li {
+    padding: 10px;
+}
+
 .searchbar input {
     padding-left: 10px;
     width: 40vw;
-    height: 30px;
+    height: 40px;
+    font-size:16px;
     border-radius: 5px 0px 0px 5px;
     border: none;
 }
@@ -22,7 +47,7 @@
     align-items: center;
     color:white;
     width: 5vw;
-    height: 30px;
+    height: 40px;
     border-radius: 0px 5px 5px 0px;
     background-color: rgb(110, 110, 110);
     border: none;
@@ -31,4 +56,16 @@
 .searchbar .search-button:hover {
     cursor: pointer;
     background-color: rgb(78, 78, 78);
+}
+
+.drop-down {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+
+.drop-down ul li:hover {
+    cursor: pointer;
+    background-color: rgb(221, 221, 221);
 }

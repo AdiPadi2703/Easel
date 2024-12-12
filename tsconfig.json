@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/api/webhooks/route.js"  ],
+, "app/api/webhooks/route.js", "app/search/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]
