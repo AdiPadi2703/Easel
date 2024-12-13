@@ -4,24 +4,23 @@ import Gallery from "../Components/Gallery/Gallery";
 
 async function GalleryPage(props) {
   async function getImages() {
-    let response = [];
+    let response_json = [];
 
     try {
       const url = props.username
         ? `https://easel-alpha.vercel.app/api/get-images-username?username=${props.username}`
         : `https://easel-alpha.vercel.app/api/get-all-images`;
 
-      response = await fetch(url, {
+      const response = await fetch(url, {
         method: "GET",
         next: {
           revalidate: 300,
         },
       });
+      response_json = await response.json();
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
     }
-
-    const response_json = await response.json();
 
     if (response_json?.images?.rows?.length > 0) {
       return response_json.images?.rows;
