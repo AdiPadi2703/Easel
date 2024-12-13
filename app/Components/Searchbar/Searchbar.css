@@ -69,3 +69,9 @@
     cursor: pointer;
     background-color: rgb(221, 221, 221);
 }
+
+.search-loading-circle {
+    color:white;
+    font-size: 200%;
+    animation: loading-animation 1s infinite;
+}

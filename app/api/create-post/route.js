@@ -1,33 +1,22 @@
-import { auth } from "@clerk/nextjs/server";
-import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
+import { create_post, get_post_with_post_id } from "../../../server/queries";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const imageURL = searchParams.get("imageURL");
 
-  var postId = 0;
+  if (!imageURL) {
+    throw new Error("Image url is required!");
+  }
+
+  let postId = 0;
 
   try {
-    if (!imageURL) {
-      throw new Error("imageURL is required");
-    }
-
-    const { userId } = await auth();
-
-    if (!userId) {
-      throw new Error("User not authenticated!");
-    }
-
-    var post_result =
-      await sql`INSERT INTO Posts (user_id, image_url, likes, laughs, loves, dislikes) VALUES (${userId}, ${imageURL}, ${0}, ${0}, ${0}, ${0}) RETURNING post_id;`;
-    postId = post_result.rows[0].post_id;
+    postId = await create_post(imageURL);
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  // not safe... do not send posts to client component since it contains user_id
-
-  const post = await sql`SELECT * FROM Posts WHERE post_id = ${postId};`;
+  const post = await get_post_with_post_id(postId);
   return NextResponse.json({ post }, { status: 200 });
 }

@@ -1,25 +1,30 @@
 import React from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import Gallery from "../Components/Gallery/Gallery";
-import { sql } from "@vercel/postgres";
 
 async function GalleryPage(props) {
   async function getImages() {
     let response = [];
 
     try {
-      if (props.username) {
-        response =
-          await sql`SELECT image_url FROM Posts NATURAL JOIN Users WHERE username = ${props.username}; `;
-      } else {
-        response = await sql`SELECT image_url from Posts;`;
-      }
+      const url = props.username
+        ? `https://easel-alpha.vercel.app/api/get-images-username?username=${props.username}`
+        : `https://easel-alpha.vercel.app/api/get-all-images`;
+
+      response = await fetch(url, {
+        method: "GET",
+        next: {
+          revalidate: 300,
+        },
+      });
     } catch (error) {
       console.error(error.message);
     }
 
-    if (response?.rows?.length > 0) {
-      return response.rows;
+    const response_json = await response.json();
+
+    if (response_json?.images?.rows?.length > 0) {
+      return response_json.images?.rows;
     } else {
       return [];
     }

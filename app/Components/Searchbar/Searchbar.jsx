@@ -3,6 +3,8 @@ import React from "react";
 import "./Searchbar.css";
 import { useRouter } from "next/navigation";
 import { IoSearch } from "react-icons/io5";
+import { FaCircle } from "react-icons/fa";
+import { search_fetch } from "./search_fetch";
 
 export default function Searchbar() {
   const inputRef = React.useRef(null);
@@ -11,14 +13,14 @@ export default function Searchbar() {
   const [query, setQuery] = React.useState("");
   const [search_results, setSearchResults] = React.useState([]);
   const [style, setStyle] = React.useState(["", ""]);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   async function search() {
-    const result = await fetch(`/api/search-usernames?query=${query}`, {
-      method: "GET",
-    });
-    const result_json = await result.json();
+    setIsLoading(true);
+    const result_json = await search_fetch(query);
     setStyle(["5px 0px 0px 0px", "0px 5px 0px 0px"]);
     setSearchResults(result_json.usernames.rows);
+    setIsLoading(false);
   }
 
   function redirectHandler(query) {
@@ -31,6 +33,7 @@ export default function Searchbar() {
     <div className="search-container">
       <div className="searchbar">
         <input
+          placeholder="Search username..."
           style={{ borderRadius: `${style[0]}` }}
           disabled={isSearching}
           value={query}
@@ -65,7 +68,11 @@ export default function Searchbar() {
           disabled={isSearching}
           className="search-button"
         >
-          <IoSearch style={{ fontSize: "20px" }} />
+          {isLoading ? (
+            <FaCircle className="search-loading-circle" />
+          ) : (
+            <IoSearch style={{ fontSize: "20px" }} />
+          )}
         </button>
       </div>
 

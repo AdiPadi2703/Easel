@@ -6,7 +6,7 @@ import Searchbar from "../Searchbar/Searchbar";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 
-function Gallery(props) {
+export default function Gallery(props) {
   const [curr_image, setCurrImage] = React.useState("");
   const [show_prompt, setShowPrompt] = React.useState(false);
   const [view_image, setViewImage] = React.useState(false);
@@ -85,5 +85,3 @@ function Gallery(props) {
     </div>
   );
 }
-
-export default Gallery;

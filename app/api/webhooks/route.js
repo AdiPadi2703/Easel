@@ -2,8 +2,7 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import { sql } from "@vercel/postgres";
-import { del } from "@vercel/blob";
+import { add_user, delete_user, update_user } from "../../../server/queries";
 
 export async function POST(request) {
   const SIGNING_SECRET = process.env.SIGNING_SECRET;
@@ -47,7 +46,7 @@ export async function POST(request) {
       return new Response("Missing data", { status: 400 });
     } else {
       try {
-        await sql`INSERT INTO Users (user_id, username, user_email) VALUES (${id}, ${username}, ${email_address});`;
+        await add_user(id, username, email_address);
       } catch (error) {
         console.log(error.message);
         return NextResponse.json({ error: error.message }, { status: 500 });
@@ -60,17 +59,7 @@ export async function POST(request) {
       return new Response("Missing data", { status: 400 });
     } else {
       try {
-        const image_url_query_result =
-          await sql`SELECT image_url FROM Posts WHERE user_id = ${id};`;
-        const image_urls = image_url_query_result.rows;
-
-        if (image_urls?.length > 0) {
-          await del(image_urls.map((blob) => blob.image_url));
-        }
-
-        await sql`DELETE FROM Comments WHERE user_id = ${id};`;
-        await sql`DELETE FROM Posts WHERE user_id = ${id};`;
-        await sql`DELETE FROM Users WHERE user_id = ${id};`;
+        await delete_user(id);
       } catch (error) {
         return NextResponse.json({ error: error.message }, { status: 500 });
       }
@@ -83,7 +72,7 @@ export async function POST(request) {
       return new Response("Missing data", { status: 400 });
     } else {
       try {
-        await sql`UPDATE Users SET username = ${username}, user_email = ${email_address} where user_id = ${id};`;
+        await update_user();
       } catch (error) {
         console.log(error.message);
         return NextResponse.json({ error: error.message }, { status: 500 });
