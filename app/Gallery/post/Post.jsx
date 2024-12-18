@@ -101,7 +101,11 @@ export default function Post(props) {
               </p>
             )}
 
-            <p> Created On: {props.metadata.created_at.substring(0, 10)}</p>
+            <p>
+              {" "}
+              Created On:{" "}
+              {props.metadata.created_at.toString().substring(0, 10)}
+            </p>
           </div>
         </div>
         <div className="post-body">

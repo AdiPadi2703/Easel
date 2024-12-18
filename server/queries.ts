@@ -15,7 +15,7 @@ import { PiSwapLight } from "react-icons/pi";
 
 export async function get_usernames(query: string) {
   const usernames =
-    await sql` SELECT username, SIMILARITY(username, ${query}) AS similarity
+    await sql` SELECT username, user_avatar, SIMILARITY(username, ${query}) AS similarity
       FROM Users
       WHERE lower(username) % lower(${query})
       ORDER BY similarity DESC LIMIT 5;`;

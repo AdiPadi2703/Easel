@@ -1,0 +1,23 @@
+.profile-box {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile-username {
+  color: #f2f0ef;
+  padding: 5px;
+}
+
+.total-posts {
+  color: #f2f0ef;
+  font-weight: 200;
+}
+
+.profile-avatar img {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}

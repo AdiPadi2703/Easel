@@ -1,27 +1,33 @@
-.signup-form{
-  display:flex;
+.signup-form {
+  display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   flex-direction: column;
-  animation-name:fade-up;
+  animation-name: fade-up;
   animation-duration: 1s;
 }
 
 .signup-box {
-  background-color: white;
-  border-radius: 20px;
+  border: 1px solid #f2f0ef;
+  background-color: black;
+  border-radius: 5px;
   height: auto;
   width: min(400px, 80%);
   margin-top: 30px;
   padding: 40px 0px 40px 0px;
   text-align: center;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  
+  color: #f2f0ef;
+}
+
+.signup-box form input:focus,
+.signup-box form button:focus {
+  outline: none;
 }
 
 .signup-form h1 {
   padding: 30px 0px 20px 0px;
-  color: white;
+  color: #f2f0ef;
   font-weight: 100;
 }
 
@@ -29,14 +35,20 @@
   padding: 20px 0 20px 0px;
 }
 
-.auth-icon{
-  height: 25px;
-  width: 25px;
+.signup-box form .oauth-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-box form .oauth-icon {
+  height: 27px;
+  width: 27px;
 }
 
 .signup-box form input {
-  border: 1px solid rgb(139, 135, 135);
-  background-color: rgba(252, 252, 252, 0.2);
+  border: none;
+  background-color: #f2f0ef;
   width: min(500px, 80%);
   border-radius: 3px;
   font-family: "Poppins", serif;
@@ -50,8 +62,9 @@
 }
 
 .signup-box form button {
-  border: 1px solid rgb(139, 135, 135);
-  background-color: rgba(252, 252, 252, 0.2);
+  cursor: pointer;
+  border: none;
+  background-color: #f2f0ef;
   width: min(500px, 80%);
   border-radius: 3px;
   font-family: "Poppins", serif;
@@ -60,24 +73,24 @@
   display: block;
   text-align: center;
   font-size: 18px;
-  color: rgb(0, 0, 0);
+  color: black;
   font-weight: 300;
 }
 
 .signup-box form button:hover {
-  color: white;
-  background-color: black;
+  transition: background-color 200ms;
+  background-color: rgb(78, 78, 78);
+  color: #f2f0ef;
 }
 
-@media (min-width: 600px){
+@media (min-width: 600px) {
   .signup-form {
     margin-left: 4rem;
   }
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   .signup-form {
     margin-top: 4rem;
   }
 }
-

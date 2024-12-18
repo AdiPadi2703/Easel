@@ -1,77 +1,79 @@
 .search-container {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .searchbar {
-    padding: 20px 20px 0px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90vw;
-
-}
-
-.drop-down{
-    text-align: left;
-    width: 45vw;
-    background-color: white;
-    padding-bottom: 5px;
-    border-radius: 0px 0px 5px 5px;
-}
-
-.drop-down ul {
-    list-style: none; 
-    width: 100%;
-}
-
-.drop-down ul li {
-    padding: 10px;
-}
-
-.searchbar input {
-    padding-left: 10px;
-    width: 40vw;
-    height: 40px;
-    font-size:16px;
-    border-radius: 5px 0px 0px 5px;
-    border: none;
-}
-
-.searchbar .search-button {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    color:white;
-    width: 5vw;
-    height: 40px;
-    border-radius: 0px 5px 5px 0px;
-    background-color: rgb(110, 110, 110);
-    border: none;
-}
-
-.searchbar .search-button:hover {
-    cursor: pointer;
-    background-color: rgb(78, 78, 78);
+  padding: 20px 20px 0px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
 }
 
 .drop-down {
-    display:flex;
-    justify-content: center;
-    align-items:center;
+  text-align: left;
+  width: 45vw;
+  background-color: #f2f0ef;
+  padding-bottom: 5px;
+  border-radius: 0px 0px 5px 5px;
 }
 
+.drop-down ul {
+  list-style: none;
+  width: 100%;
+}
+
+.drop-down ul li {
+  padding: 10px;
+}
+
+.searchbar input {
+  background-color: #f2f0ef;
+  padding-left: 10px;
+  width: 40vw;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 5px 0px 0px 5px;
+  border: none;
+}
+
+.searchbar .search-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f2f0ef;
+  width: 5vw;
+  height: 40px;
+  border-radius: 0px 5px 5px 0px;
+  background-color: rgb(110, 110, 110);
+  border: none;
+}
+
+.searchbar .search-button:hover {
+  cursor: pointer;
+  background-color: rgb(78, 78, 78);
+}
+
+.drop-down {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchbar input:focus {
+  outline: none;
+}
 
 .drop-down ul li:hover {
-    cursor: pointer;
-    background-color: rgb(221, 221, 221);
+  cursor: pointer;
+  background-color: rgb(221, 221, 221);
 }
 
 .search-loading-circle {
-    color:white;
-    font-size: 200%;
-    animation: loading-animation 1s infinite;
+  color: #f2f0ef;
+  font-size: 200%;
+  animation: loading-animation 1s infinite;
 }

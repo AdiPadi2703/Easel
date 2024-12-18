@@ -11,10 +11,12 @@ export default function ReactionForm(props) {
     reaction_count: props.reactions.length,
     has_reacted: props.reactions
       .map((reaction) => {
-        return reaction.id === userId ? true : false;
+        return reaction.user_id === userId ? true : false;
       })
       .includes(true),
   });
+
+  console.log(current_reaction_state);
 
   const [optimistic_reaction_state, changeOptimisticReactionState] =
     React.useOptimistic(
@@ -58,7 +60,8 @@ export default function ReactionForm(props) {
         <div>
           {!show_reaction_count ? (
             <div>
-              {optimistic_reaction_state.has_reacted ? (
+              {current_reaction_state.has_reacted ||
+              optimistic_reaction_state.has_reacted ? (
                 <AiFillLike className="nav-icon" />
               ) : (
                 <AiOutlineLike className="nav-icon" />

@@ -1,10 +1,10 @@
-.gallery-box{
+.gallery-box {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  animation-name:fade-up;
-  animation-duration:1s;
+  animation-name: fade-up;
+  animation-duration: 1s;
 }
 
 .gallery-heading {
@@ -15,7 +15,7 @@
 
 .gallery-heading h1 {
   padding: 30px 0px 20px 0px;
-  color: white;
+  color: #f2f0ef;
   font-weight: 100;
 }
 
@@ -49,7 +49,6 @@
   right: 0;
   left: 0;
   position: fixed;
- 
 }
 
 .prompt-box {
@@ -68,8 +67,7 @@
   width: min(400px, 80%);
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 20px;
-  animation-name:zoom-in
-;
+  animation-name: zoom-in;
   animation-duration: 0.5s;
 }
 
@@ -87,7 +85,7 @@
   position: absolute;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  color: white;
+  color: #f2f0ef;
 }
 
 .prompt-box .prompt-button:hover {
@@ -106,7 +104,6 @@
   left: 0;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
-  
 }
 
 .overlay-image .view-image {
@@ -115,8 +112,7 @@
   align-items: center;
   height: 100%;
   width: auto;
-  animation-name:zoom-in
-;
+  animation-name: zoom-in;
   animation-duration: 0.5s;
 }
 
@@ -130,7 +126,7 @@
   cursor: pointer;
   top: 10%;
   right: 10%;
-  color: white;
+  color: #f2f0ef;
   background-color: rgba(0, 0, 0, 0);
   border: none;
   position: absolute;
@@ -149,7 +145,7 @@
   }
 }
 
-@media (min-width: 600px){
+@media (min-width: 600px) {
   .gallery-box {
     margin-left: 4rem;
   }

@@ -36,8 +36,8 @@ export default function Signup() {
 
             <h3 style={{ fontSize: "15px", fontWeight: "400" }}>Or</h3>
 
-            <Clerk.Connection name="google">
-              <Clerk.Icon className="auth-icon" />
+            <Clerk.Connection className="oauth-box" name="google">
+              <Clerk.Icon className="oauth-icon" />
             </Clerk.Connection>
           </SignUp.Step>
 
@@ -67,7 +67,7 @@ export default function Signup() {
 
           <SignUp.Step name="verifications">
             <SignUp.Strategy name="email_code">
-              <h3 style={{ color: "black" }}>Check your email</h3>
+              <h3 style={{ color: "#f2f0ef" }}>Check your email</h3>
 
               <Clerk.Field name="code">
                 <Clerk.Label>Email Code</Clerk.Label>

@@ -1,6 +1,6 @@
 a {
   text-decoration: none;
-  color: white;
+  color: #f2f0ef;
 }
 
 .navbar {
@@ -27,7 +27,7 @@ a {
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: white;
+  color: #f2f0ef;
   height: 4rem;
   width: 100%;
 }
@@ -56,7 +56,7 @@ a {
 }
 
 .active .link-item {
-  border-bottom: solid white;
+  border-bottom: solid #f2f0ef;
 }
 
 @media (max-height: 400px) {
@@ -69,7 +69,7 @@ a {
   }
 
   .navbar::-webkit-scrollbar-thumb {
-    background-color: white;
+    background-color: #f2f0ef;
   }
 
   .navbar::-webkit-scrollbar {

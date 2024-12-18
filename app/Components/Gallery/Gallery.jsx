@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { convert_to_UUID } from "../../../server/encoding_utils";
 import GalleryImages from "./GalleryImages";
+import Profile from "./Profile";
 
 export default function Gallery(props) {
   const [curr_image, setCurrImage] = React.useState("");
@@ -51,6 +52,7 @@ export default function Gallery(props) {
         <h1>Gallery</h1>
       </div>
       <Searchbar />
+      {props.metadata.has_data ? <Profile metadata={props.metadata} /> : null}
       <GalleryImages images={images} image_on_click={updateCurrImage} />
       {show_prompt ? (
         <div className="overlay-prompt">

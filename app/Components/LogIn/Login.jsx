@@ -23,14 +23,14 @@ export default function Login() {
 
             <h3 style={{ fontSize: "15px", fontWeight: "400" }}>Or</h3>
 
-            <Clerk.Connection name="google">
-              <Clerk.Icon className="auth-icon" />
+            <Clerk.Connection className="oauth-box" name="google">
+              <Clerk.Icon className="oauth-icon" />
             </Clerk.Connection>
           </SignIn.Step>
 
           <SignIn.Step name="verifications">
             <SignIn.Strategy name="password">
-              <h3 style={{ color: "black" }}>Enter your password</h3>
+              <h3 style={{ color: "#f2f0ef" }}>Enter your password</h3>
 
               <Clerk.Field name="password">
                 <Clerk.Label>Password</Clerk.Label>
@@ -45,8 +45,8 @@ export default function Login() {
             </SignIn.Strategy>
 
             <SignIn.Strategy name="reset_password_email_code">
-              <h3 style={{ color: "black" }}>Check your email</h3>
-              <p style={{ color: "black" }}>
+              <h3 style={{ color: "#f2f0ef" }}>Check your email</h3>
+              <p style={({ color: "#f2f0ef" }, { paddingBottom: "20px" })}>
                 We sent a code to <SignIn.SafeIdentifier />.
               </p>
 
@@ -61,7 +61,7 @@ export default function Login() {
           </SignIn.Step>
 
           <SignIn.Step name="forgot-password">
-            <h3 style={{ color: "black" }}>Forgot your password?</h3>
+            <h3 style={{ color: "#f2f0ef" }}>Forgot your password?</h3>
 
             <SignIn.SupportedStrategy name="reset_password_email_code">
               Reset password
@@ -71,28 +71,26 @@ export default function Login() {
           </SignIn.Step>
 
           <SignIn.Step name="reset-password">
-            <h3 style={{ color: "black" }}>Reset your password</h3>
+            <h3 style={{ color: "#f2f0ef" }}>Reset your password</h3>
 
             <Clerk.Field name="password">
               <Clerk.Label>New password</Clerk.Label>
               <Clerk.Input />
-              <Clerk.FieldError />
+              <Clerk.FieldError style={{ color: "red" }} />
             </Clerk.Field>
 
             <Clerk.Field name="confirmPassword">
               <Clerk.Label>Confirm password</Clerk.Label>
               <Clerk.Input />
-              <Clerk.FieldError />
+              <Clerk.FieldError style={{ color: "red" }} />
             </Clerk.Field>
 
             <SignIn.Action submit>Reset password</SignIn.Action>
           </SignIn.Step>
 
-          <button>
-            <Link className="ref-link" href="/Signup">
-              You new? Sign up here!
-            </Link>
-          </button>
+          <Link className="ref-link" href="/Signup">
+            <button>You new? Sign up here!</button>
+          </Link>
         </div>
       </SignIn.Root>
     </div>

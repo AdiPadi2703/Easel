@@ -33,11 +33,17 @@ export default async function GalleryPage(props) {
 
   response = await response();
   const images = response.rows;
+  const metadata = {
+    has_data: props.username ? true : false,
+    username: props.username,
+    user_avatar: props.avatar,
+    total_posts: images.length,
+  };
 
   return (
     <div>
       <Navbar tab="gallery" />
-      <Gallery images={images} />
+      <Gallery images={images} metadata={metadata} />
     </div>
   );
 }

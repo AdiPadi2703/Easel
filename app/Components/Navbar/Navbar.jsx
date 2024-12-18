@@ -8,8 +8,11 @@ import { FaFilePen } from "react-icons/fa6";
 import "./Navbar.css";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 
-function Navbar(props) {
+async function Navbar(props) {
+  const { username, imageUrl } = await currentUser();
+
   return (
     <nav className="navbar">
       <ul className="navbar-nav">
@@ -54,8 +57,8 @@ function Navbar(props) {
           </SignedOut>
           <SignedIn>
             <Link
-              className={props.tab === "login" ? "active" : null}
-              href="/Login"
+              className={props.tab === "profile" ? "active" : null}
+              href={`/Gallery/search?username=${username}&avatar=${imageUrl}`}
             >
               <div className="link-item">
                 <div className="user-icon">

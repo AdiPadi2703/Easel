@@ -9,26 +9,26 @@
 .avatar {
   height: 30px;
   width: 30px;
-  border-radius: 100%;
+  border-radius: 50%;
 }
 
 .top-bar-wide {
-  color: white;
+  color: #f2f0ef;
   border-radius: 5px 5px 0px 0px;
   padding: 10px;
   background-color: black;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #f2f0ef;
 }
 
 .top-bar-tall {
   grid-row-start: 1;
   grid-row-end: 1;
-  color: white;
+  color: #f2f0ef;
   max-width: 100%;
   border-radius: 5px 5px 0px 0px;
   padding: 10px;
   background-color: black;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #f2f0ef;
 }
 
 .post-header {
@@ -45,7 +45,7 @@
 
 .post-container-tall {
   display: grid;
-  border: 1px white solid;
+  border: 1px #f2f0ef solid;
   border-radius: 5px 5px 5px 5px;
   background-color: black;
   margin: 5rem;
@@ -59,7 +59,7 @@
 .post-container-wide {
   display: flex;
   flex-direction: column;
-  border: 1px white solid;
+  border: 1px #f2f0ef solid;
   border-radius: 5px 5px 5px 5px;
   background-color: black;
   margin: 5rem;
@@ -95,12 +95,12 @@
   grid-column-start: 2;
   grid-column-end: 3;
   padding: 10px;
-  color: white;
+  color: #f2f0ef;
 }
 
 .post-container-wide .post-actions {
   padding: 10px;
-  color: white;
+  color: #f2f0ef;
   max-height: 400px;
 }
 
@@ -113,7 +113,7 @@
 }
 
 .comment-list::-webkit-scrollbar-thumb {
-  background-color: white;
+  background-color: #f2f0ef;
 }
 
 .comments {
@@ -135,6 +135,7 @@
 
 .comment-input {
   padding-left: 10px;
+  background-color: #f2f0ef;
   width: 90%;
   height: 30px;
   border-radius: 5px 0px 0px 5px;
@@ -154,7 +155,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #f2f0ef;
 }
 
 .create-comment button:hover {
@@ -164,7 +165,7 @@
 
 .post-container-tall .comment-list {
   list-style: none;
-  color: white;
+  color: #f2f0ef;
   max-height: 500px;
   max-width: 400px;
   overflow: auto;
@@ -172,7 +173,7 @@
 
 .post-container-wide .comment-list {
   list-style: none;
-  color: white;
+  color: #f2f0ef;
   max-width: 100%;
   max-height: 300px;
   overflow: auto;
@@ -199,7 +200,7 @@
   border-radius: 5px;
   color: black;
   font-size: 12px;
-  background-color: white;
+  background-color: #f2f0ef;
 }
 
 .user-icon-container {
@@ -218,7 +219,7 @@
   align-items: center;
   height: 40px;
   width: 40px;
-  border-radius: 100%;
+  border-radius: 50%;
 }
 
 .comment-text {
@@ -273,7 +274,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  color: white;
+  color: #f2f0ef;
   border: none;
   background-color: black;
   height: 25px;
@@ -287,6 +288,7 @@
 
 .nav-icon {
   font-size: 20px;
+  color: #f2f0ef;
 }
 
 .nav-button:hover {
@@ -343,7 +345,7 @@
   position: absolute;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  color: white;
+  color: #f2f0ef;
 }
 
 .delete-prompt-box .delete-prompt-button:hover {
@@ -376,7 +378,7 @@
 
 .comment-user-avatar:hover,
 .avatar:hover {
-  border: 1px white solid;
+  border: 1px #f2f0ef solid;
   cursor: pointer;
 }
 

@@ -11,7 +11,6 @@ html {
   margin: 0;
   box-sizing: border-box;
   font-family: Poppins, serif;
-  
 }
 
 #root {
@@ -20,59 +19,77 @@ html {
 
 .holder {
   min-height: 100%;
-  position:relative;
+  position: relative;
 }
 
-
 body {
-  background-color: var(--bgcolor) ;
+  background-color: var(--bgcolor);
 }
 
 body::-webkit-scrollbar {
   width: 0.5rem;
 }
 
-body::-webkit-scrollbar-track{
+body::-webkit-scrollbar-track {
   background-color: black;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: white;
+  background-color: #f2f0ef;
 }
 
-@media(max-width: 600px){
-
+@media (max-width: 600px) {
   #root {
     min-height: 93vh;
   }
 
   .holder {
     min-height: 100%;
-    position:relative;
+    position: relative;
   }
-
 }
 
-
 @keyframes fade-up {
-  from{transform: translateY(50px); opacity:0%;}
-  to{transform: translateY(0px); opacity:100%;}
+  from {
+    transform: translateY(50px);
+    opacity: 0%;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 100%;
+  }
 }
 
 @keyframes zoom-in {
-
-  from{scale: 0%; opacity: 0%;}
-  to{scale: 100%; opacity: 100%;}
-
+  from {
+    scale: 0%;
+    opacity: 0%;
+  }
+  to {
+    scale: 100%;
+    opacity: 100%;
+  }
 }
 
 @keyframes loading-animation {
-  0%{scale: 0%;}
-  50%{scale: 100%;}
-  100%{scale: 0%;}
+  0% {
+    scale: 0%;
+  }
+  50% {
+    scale: 100%;
+  }
+  100% {
+    scale: 0%;
+  }
 }
 
 @keyframes fade-down {
-  0%{transform:translateY(-50px); opacity: 0%;}
-  100%{transform: translateY(0px); opacity: 100%;}
+  0% {
+    transform: translateY(-50px);
+    opacity: 0%;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 100%;
+  }
 }

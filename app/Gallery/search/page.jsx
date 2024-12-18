@@ -1,14 +1,13 @@
 import GalleryPage from "../page";
 
 async function Page({ searchParams }) {
-  const { query } = await searchParams;
+  const { username, avatar } = await searchParams;
 
   return (
     <div>
-      <GalleryPage username={query} />
+      <GalleryPage username={username} avatar={avatar} />
     </div>
   );
 }
 
 export default Page;
-

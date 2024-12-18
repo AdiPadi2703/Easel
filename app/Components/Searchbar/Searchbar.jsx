@@ -25,7 +25,9 @@ export default function Searchbar() {
 
   function redirectHandler(query) {
     startTransition(() => {
-      router.push(`/Gallery/search?query=${query}`);
+      router.push(
+        `/Gallery/search?username=${query.username}&avatar=${query.user_avatar}`
+      );
     });
   }
 
@@ -79,14 +81,14 @@ export default function Searchbar() {
       {search_results?.length ? (
         <div className="drop-down">
           <ul>
-            {search_results.map((username, index) => {
+            {search_results.map((user, index) => {
               return (
                 <li
-                  onClick={() => redirectHandler(username.username)}
+                  onClick={() => redirectHandler(user)}
                   style={{ color: "black" }}
                   key={index}
                 >
-                  {username.username}
+                  {user.username}
                 </li>
               );
             })}

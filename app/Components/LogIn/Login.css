@@ -1,28 +1,28 @@
 .login-form {
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  animation-name:fade-up;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation-name: fade-up;
   animation-duration: 1s;
 }
 
-
 .login-box {
-  background-color: white;
-  border-radius: 20px;
+  border: 1px solid #f2f0ef;
+  background-color: black;
+  border-radius: 5px;
   height: auto;
   width: min(400px, 80%);
   margin-top: 30px;
   padding: 40px 0px 40px 0px;
   text-align: center;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  color: #f2f0ef;
 }
 
 .login-form h1 {
   padding: 30px 0px 20px 0px;
-  color: white;
+  color: #f2f0ef;
   font-weight: 100;
 }
 
@@ -30,9 +30,14 @@
   padding: 20px 0 20px 0px;
 }
 
+.login-box form input:focus,
+.login-box form button:focus {
+  outline: none;
+}
+
 .login-box form input {
-  border: 1px solid rgb(139, 135, 135);
-  background-color: rgba(252, 252, 252, 0.2);
+  border: none;
+  background-color: #f2f0ef;
   width: min(500px, 80%);
   border-radius: 3px;
   font-family: "Poppins", serif;
@@ -45,10 +50,10 @@
   font-weight: 300;
 }
 
-button {
-  cursor:pointer;
-  border: 1px solid rgb(139, 135, 135);
-  background-color: rgba(252, 252, 252, 0.2);
+.login-box button {
+  cursor: pointer;
+  border: none;
+  background-color: #f2f0ef;
   width: min(500px, 80%);
   border-radius: 3px;
   font-family: "Poppins", serif;
@@ -65,21 +70,25 @@ button {
   color: black;
 }
 
-.auth-icon{
-  height: 25px;
-  width: 25px;
+.login-box .oauth-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-button:hover{
-  .ref-link {
-    color:white;
-  }
-  color: white;
-  background-color: var(--bgcolor);
+.login-box .oauth-icon {
+  height: 27px;
+  width: 27px;
 }
 
+.login-form button:hover,
+.login-form button .ref-link:hover {
+  transition: background-color 200ms;
+  background-color: rgb(78, 78, 78);
+  color: #f2f0ef;
+}
 
-@media (min-width: 600px){
+@media (min-width: 600px) {
   .login-form {
     margin-left: 4rem;
   }
@@ -90,4 +99,3 @@ button:hover{
     margin-top: 4rem;
   }
 }
-
