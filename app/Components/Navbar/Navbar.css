@@ -1,21 +1,20 @@
 a {
   text-decoration: none;
-  color:white;
+  color: white;
 }
 
-.navbar{
+.navbar {
   width: 4rem;
   height: 100vh;
-  position:fixed;
+  position: fixed;
   background-color: black;
-  
 }
 
 .navbar-nav {
   padding: 0;
   margin: 0;
-  list-style:none;
-  display:flex;
+  list-style: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -24,16 +23,13 @@ a {
   width: 100%;
 }
 
-
-.navbar-nav li .link-item{
-  
+.navbar-nav li .link-item {
   display: flex;
   flex-direction: row;
   align-items: center;
-  color:white;
+  color: white;
   height: 4rem;
   width: 100%;
-  
 }
 
 .icon {
@@ -46,8 +42,8 @@ a {
   margin: 0 1rem;
 }
 
-.logo .link-text{
-  cursor:pointer;
+.logo .link-text {
+  cursor: pointer;
   flex-basis: 80%;
   font-weight: bold;
   text-align: center;
@@ -55,16 +51,15 @@ a {
 }
 
 .link-text {
-  display:none;
+  display: none;
   margin-left: 1rem;
 }
 
-.active .link-item{
+.active .link-item {
   border-bottom: solid white;
 }
 
-
-@media(max-height: 400px){
+@media (max-height: 400px) {
   .navbar {
     overflow-y: scroll;
   }
@@ -80,12 +75,9 @@ a {
   .navbar::-webkit-scrollbar {
     width: 0rem;
   }
-
 }
 
-
-@media(max-width: 600px){
-
+@media (max-width: 600px) {
   .navbar {
     top: 0;
     width: 100%;
@@ -104,15 +96,14 @@ a {
     justify-content: center;
   }
 
-  .navbar-nav .nav-item:hover{
-    background-color: rgb(40, 40, 40);
+  .navbar-nav .nav-item:hover {
+    background-color: rgb(87, 87, 87);
     font-size: 1.5rem;
     transition: font-size 200ms;
   }
-
 }
 
-@media(min-width: 600px) {
+@media (min-width: 600px) {
   .navbar {
     top: 0;
     width: 4rem;
@@ -123,21 +114,19 @@ a {
   .navbar:hover {
     width: 16rem;
   }
-  
+
   .navbar:hover .logo .link-text {
     display: block;
   }
-  
+
   .navbar:hover .nav-item .link-text {
     animation: fade-up 600ms;
     display: block;
   }
 
-  .navbar-nav .nav-item:hover{
+  .navbar-nav .nav-item:hover {
     background-color: rgb(40, 40, 40);
     font-size: 1.1rem;
     transition: font-size 200ms;
   }
-
-  
 }

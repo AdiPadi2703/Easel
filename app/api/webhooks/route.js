@@ -39,14 +39,14 @@ export async function POST(request) {
   }
 
   if (event.type === "user.created") {
-    const { id, username, email_addresses } = event.data;
+    const { id, username, email_addresses, image_url } = event.data;
     const email_address = email_addresses[0].email_address;
 
     if (!id || !email_address) {
       return new Response("Missing data", { status: 400 });
     } else {
       try {
-        await add_user(id, username, email_address);
+        await add_user(id, username, email_address, image_url);
       } catch (error) {
         console.log(error.message);
         return NextResponse.json({ error: error.message }, { status: 500 });
@@ -72,7 +72,7 @@ export async function POST(request) {
       return new Response("Missing data", { status: 400 });
     } else {
       try {
-        await update_user();
+        await update_user(); // check this thing
       } catch (error) {
         console.log(error.message);
         return NextResponse.json({ error: error.message }, { status: 500 });

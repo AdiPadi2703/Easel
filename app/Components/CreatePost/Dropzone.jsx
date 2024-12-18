@@ -5,12 +5,14 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import { FaCircle } from "react-icons/fa";
 import "./Dropzone.css";
 import Image from "next/image";
+import { create_post_action } from "../../../server/actions";
 
 function Dropzone() {
   const [blob, setBlob] = React.useState(null);
   const [success, setSuccess] = React.useState(0);
   const [file, setFile] = React.useState(null);
   const [rejected, setRejected] = React.useState([]);
+  const [description, setDescription] = React.useState("");
 
   const onDrop = React.useCallback((acceptedFiles, rejectedFiles) => {
     if (acceptedFiles?.length) {
@@ -62,7 +64,7 @@ function Dropzone() {
       return (
         <div className="upload-loading-icon">
           <h3 style={{ fontSize: "18px", fontWeight: "200" }}>
-            Uploading File...
+            Creating Post...
           </h3>
           <FaCircle className="upload-loading-circle" />
         </div>
@@ -71,7 +73,7 @@ function Dropzone() {
       return (
         <div>
           <h3 style={{ fontSize: "18px", fontWeight: "200" }}>
-            File successfully uploaded!
+            Post Created Successfully!
           </h3>
         </div>
       );
@@ -93,14 +95,14 @@ function Dropzone() {
 
       const newBlob = await response.json();
 
-      const imageURL = newBlob.url;
+      const image_url = newBlob.url;
+      const timestamp = new Date().toISOString();
 
-      await fetch(`/api/create-post?imageURL=${imageURL}`, {
-        method: "GET",
-      });
+      await create_post_action(image_url, description, timestamp);
 
       setBlob(newBlob);
       setSuccess(2);
+      setDescription("");
       removeFile();
     } else {
       console.log("No file to upload...");
@@ -109,6 +111,13 @@ function Dropzone() {
 
   return (
     <form className="drop-form" onSubmit={uploadToBlob}>
+      <div className="description-input">
+        <input
+          onChange={(event) => setDescription(event.target.value)}
+          placeholder="Enter post description (optional)..."
+        />
+      </div>
+
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         {isDragActive ? (
@@ -116,8 +125,6 @@ function Dropzone() {
             <MdOutlineFileUpload className="upload-icon" />
             <br />
             Drop the files here ...
-            <br />
-            <br />
           </div>
         ) : (
           <div className="upload-box">
@@ -135,19 +142,27 @@ function Dropzone() {
       <div className="upload-list">
         {file ? (
           <>
-            {file.name}
-            <br />
+            <p
+              style={{
+                paddingBottom: "20px",
+                fontWeight: "200",
+                fontSize: "18px",
+              }}
+            >
+              {file.name}
+            </p>
+
             <Image
               src={file.preview}
-              height={100}
-              width={100}
+              height={200}
+              width={150}
               alt={file.name}
               onLoad={() => {
                 URL.revokeObjectURL(file.preview);
               }}
             />
-            <br />
-            <div className="button">
+
+            <div className="button" style={{ paddingTop: "20px" }}>
               <button type="button" onClick={() => removeFile(file.name)}>
                 Remove File
               </button>

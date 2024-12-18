@@ -1,23 +1,22 @@
 .footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 
-    position:absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 10px; 
-    
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
 }
 
 .footer h3 {
-    color: white;
-    font-size: 15px;
-    font-weight: 200;
+  color: white;
+  font-size: 15px;
+  font-weight: 200;
 }
 
-@media (min-width: 600px){
-    .footer h3 {
-      margin-left: 4rem;
-    }
+@media (min-width: 600px) {
+  .footer h3 {
+    margin-left: 4rem;
   }
+}

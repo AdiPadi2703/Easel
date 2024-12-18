@@ -2,8 +2,7 @@ import React from "react";
 import { MdLogin } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
 import { GrGallery } from "react-icons/gr";
-import { FaRegComment } from "react-icons/fa";
-import { FaUserCircle } from "react-icons/fa";
+import { RiAddBoxFill } from "react-icons/ri";
 import { FaFilePen } from "react-icons/fa6";
 
 import "./Navbar.css";
@@ -29,17 +28,7 @@ function Navbar(props) {
             </div>
           </Link>
         </li>
-        <li className="nav-item">
-          <Link
-            className={props.tab === "posts" ? "active" : null}
-            href="/Posts"
-          >
-            <div className="link-item">
-              <FaRegComment className="icon" />
-              <div className="link-text">Posts</div>
-            </div>
-          </Link>
-        </li>
+
         <li className="nav-item">
           <Link
             className={props.tab === "gallery" ? "active" : null}
@@ -64,14 +53,22 @@ function Navbar(props) {
             </Link>
           </SignedOut>
           <SignedIn>
-            <div className="link-item">
-              <div className="user-icon">
-                <UserButton />
+            <Link
+              className={props.tab === "login" ? "active" : null}
+              href="/Login"
+            >
+              <div className="link-item">
+                <div className="user-icon">
+                  <UserButton />
+                </div>
+                <div className="link-text" style={{ paddingLeft: "5px" }}>
+                  Profile
+                </div>
               </div>
-              <div className="link-text">User</div>
-            </div>
+            </Link>
           </SignedIn>
         </li>
+
         <SignedOut>
           <li className="nav-item">
             <Link
@@ -89,12 +86,14 @@ function Navbar(props) {
         <SignedIn>
           <li className="nav-item">
             <Link
-              className={props.tab === "admin" ? "active" : null}
-              href="/Admin"
+              className={props.tab === "create" ? "active" : null}
+              href="/CreatePost"
             >
               <div className="link-item">
-                <FaUserCircle className="icon" />
-                <div className="link-text">Admin</div>
+                <RiAddBoxFill className="icon" />
+                <div className="link-text" style={{ paddingLeft: "1px" }}>
+                  Post
+                </div>
               </div>
             </Link>
           </li>

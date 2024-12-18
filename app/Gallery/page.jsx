@@ -1,35 +1,38 @@
 import React from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import Gallery from "../Components/Gallery/Gallery";
+import { unstable_cache } from "next/cache";
+import { get_all_images, get_images_of_username } from "../../server/queries";
 
-async function GalleryPage(props) {
-  async function getImages() {
-    let response_json = [];
+export default async function GalleryPage(props) {
+  let response = [];
 
-    try {
-      const url = props.username
-        ? `https://easel-alpha.vercel.app/api/get-images-username?username=${props.username}`
-        : `https://easel-alpha.vercel.app/api/get-all-images`;
-
-      const response = await fetch(url, {
-        method: "GET",
-        next: {
-          revalidate: 300,
-        },
-      });
-      response_json = await response.json();
-    } catch (error) {
-      console.log(error.message);
-    }
-
-    if (response_json?.images?.rows?.length > 0) {
-      return response_json.images?.rows;
-    } else {
-      return [];
-    }
+  if (props.username) {
+    response = unstable_cache(
+      async () => {
+        return get_images_of_username(props.username);
+      },
+      [props.username],
+      {
+        tags: [props.username],
+        revalidate: 300,
+      }
+    );
+  } else {
+    response = unstable_cache(
+      async () => {
+        return get_all_images();
+      },
+      ["all"],
+      {
+        tags: ["all"],
+        revalidate: 300,
+      }
+    );
   }
 
-  const images = await getImages();
+  response = await response();
+  const images = response.rows;
 
   return (
     <div>
@@ -38,5 +41,3 @@ async function GalleryPage(props) {
     </div>
   );
 }
-
-export default GalleryPage;

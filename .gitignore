@@ -19,6 +19,7 @@
 
 # production
 /build
+build.log
 
 # misc
 database.sql

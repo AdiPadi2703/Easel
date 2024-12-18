@@ -4,7 +4,7 @@ import "./Searchbar.css";
 import { useRouter } from "next/navigation";
 import { IoSearch } from "react-icons/io5";
 import { FaCircle } from "react-icons/fa";
-import { search_fetch } from "./search_fetch";
+import { search_fetch_action } from "../../../server/actions";
 
 export default function Searchbar() {
   const inputRef = React.useRef(null);
@@ -17,9 +17,9 @@ export default function Searchbar() {
 
   async function search() {
     setIsLoading(true);
-    const result_json = await search_fetch(query);
+    const searches = await search_fetch_action(query);
     setStyle(["5px 0px 0px 0px", "0px 5px 0px 0px"]);
-    setSearchResults(result_json.usernames.rows);
+    setSearchResults(searches);
     setIsLoading(false);
   }
 

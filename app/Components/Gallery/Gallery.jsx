@@ -5,12 +5,25 @@ import "./Gallery.css";
 import Searchbar from "../Searchbar/Searchbar";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { convert_to_UUID } from "../../../server/encoding_utils";
+import GalleryImages from "./GalleryImages";
 
 export default function Gallery(props) {
   const [curr_image, setCurrImage] = React.useState("");
   const [show_prompt, setShowPrompt] = React.useState(false);
   const [view_image, setViewImage] = React.useState(false);
+  const [isLoading, startTransition] = React.useTransition();
+  const router = useRouter();
   const images = props.images;
+
+  function redirectHandler(query) {
+    startTransition(() => {
+      router.push(
+        `/Gallery/post?postId=${query.post_id}&imageURL=${query.image_url}`
+      );
+    });
+  }
 
   function togglePrompt() {
     setShowPrompt(!show_prompt);
@@ -23,9 +36,12 @@ export default function Gallery(props) {
     setViewImage(!view_image);
   }
 
-  function updateCurrImage(event) {
-    const image = event.target.currentSrc;
-    setCurrImage(image);
+  async function updateCurrImage(image) {
+    const uuid = await convert_to_UUID(image.post_id);
+    setCurrImage({
+      post_id: uuid,
+      image_url: image.image_url,
+    });
     togglePrompt();
   }
 
@@ -35,21 +51,7 @@ export default function Gallery(props) {
         <h1>Gallery</h1>
       </div>
       <Searchbar />
-      <div className="gallery-images">
-        <ul>
-          {images.map((image, index) => {
-            return (
-              <li key={index}>
-                <img
-                  src={image.image_url}
-                  onClick={updateCurrImage}
-                  draggable="false"
-                />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <GalleryImages images={images} image_on_click={updateCurrImage} />
       {show_prompt ? (
         <div className="overlay-prompt">
           <div className="prompt-box">
@@ -60,7 +62,12 @@ export default function Gallery(props) {
               View Image
             </button>
             <SignedIn>
-              <button className="prompt-button">View Post</button>
+              <button
+                className="prompt-button"
+                onClick={() => redirectHandler(curr_image)}
+              >
+                View Post
+              </button>
             </SignedIn>
             <SignedOut>
               <button className="prompt-button">
@@ -78,7 +85,7 @@ export default function Gallery(props) {
             <IoClose style={{ fontSize: "30" }} />
           </button>
           <div className="view-image">
-            <img src={curr_image} draggable={false} />
+            <img src={curr_image.image_url} draggable="false" />
           </div>
         </div>
       ) : null}
