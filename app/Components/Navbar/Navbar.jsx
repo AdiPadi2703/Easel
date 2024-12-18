@@ -8,10 +8,17 @@ import { FaFilePen } from "react-icons/fa6";
 import "./Navbar.css";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { currentUser } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
 async function Navbar(props) {
-  const { username, imageUrl } = await currentUser();
+  const { userId } = await auth();
+  let username = "";
+  let imageUrl = "";
+  if (userId) {
+    const user = await currentUser();
+    username = user.username;
+    imageUrl = user.imageUrl;
+  }
 
   return (
     <nav className="navbar">

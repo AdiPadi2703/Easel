@@ -2,7 +2,6 @@ import "server-only";
 import { sql } from "@vercel/postgres";
 import { del } from "@vercel/blob";
 import { auth } from "@clerk/nextjs/server";
-import { PiSwapLight } from "react-icons/pi";
 
 /* 
 
