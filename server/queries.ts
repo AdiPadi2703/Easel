@@ -118,7 +118,8 @@ export async function get_post_metadata(postId: number) {
   return response;
 }
 
-export async function delete_post(postId: number) {
+export async function delete_post(postId: number, imageURL: string) {
+  await del(imageURL);
   await sql`DELETE FROM Likes WHERE post_id = ${postId};`;
   await sql`DELETE FROM Comments WHERE post_id = ${postId};`;
   await sql`DELETE FROM Posts WHERE post_id = ${postId};`;

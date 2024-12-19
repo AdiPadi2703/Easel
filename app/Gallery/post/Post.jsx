@@ -22,6 +22,9 @@ export default function Post(props) {
   );
   const [open_comments, setOpenComments] = React.useState(false);
   const [open_description, setOpenDescription] = React.useState(false);
+  const [is_deleted, setIsDeleted] = React.useState(
+    !(props.metadata.created_at && props.metadata.username)
+  );
   const [isLoading, startTransition] = React.useTransition();
   const router = useRouter();
 
@@ -67,7 +70,14 @@ export default function Post(props) {
     });
     try {
       const timestamp = new Date().toISOString();
-      await add_comment_action(props.postId, new_comment, timestamp);
+      const response = await add_comment_action(
+        props.postId,
+        new_comment,
+        timestamp
+      );
+      if (!response.success) {
+        setIsDeleted(true);
+      }
       const created_comment = {
         username: user.username,
         comment: new_comment,
@@ -83,110 +93,121 @@ export default function Post(props) {
 
   return (
     <div className="page-container">
-      <div className={`post-container-${is_wide ? "wide" : "tall"}`}>
-        <div className={`top-bar-${is_wide ? "wide" : "tall"}`}>
-          <div className="post-header">
-            {show_avatar ? (
-              <img
-                onClick={() => redirectHandler(props.metadata.username)}
-                className="avatar"
-                src={props.metadata.user_avatar}
-              />
-            ) : (
-              <p
-                className="username"
-                onClick={() => redirectHandler(props.metadata.username)}
-              >
-                {props.metadata.username}
-              </p>
-            )}
-
-            <p>
-              {" "}
-              Created On:{" "}
-              {props.metadata.created_at.toString().substring(0, 10)}
-            </p>
-          </div>
-        </div>
-        <div className="post-body">
-          <div className="image">
-            <img src={props.src} ref={imageRef} draggable="false" />
-          </div>
-          <div className="post-actions">
-            {open_comments ? (
-              <div className="comments">
-                <div className="comments-header">
-                  <p>Comments</p>
-                  <IoClose
-                    className="nav-button"
-                    onClick={() => {
-                      setOpenComments(false);
-                    }}
-                  />
-                </div>
-                <div className="create-comment">
-                  <form action={addComment}>
-                    <input
-                      placeholder="Write a comment..."
-                      className="comment-input"
-                      onChange={(event) => setNewComment(event.target.value)}
-                    />
-                    <button type="submit">
-                      <div className="send-icon">
-                        <IoIosSend />
-                      </div>
-                    </button>
-                  </form>
-                </div>
-
-                <ul className="comment-list">
-                  {optimistic_comments.map((comment, index) => (
-                    <li key={index}>
-                      <div className="comment">
-                        <div className="user-icon-container">
-                          <img
-                            onClick={() => redirectHandler(comment.username)}
-                            className="comment-user-avatar"
-                            src={comment.user_avatar}
-                            draggable="false"
-                          />
-                        </div>
-                        <div className="comment-username">
-                          {comment.username}
-                        </div>
-                        <div className="comment-text">{comment.comment}</div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : open_description ? (
-              <div className="description">
-                <div className="description-header">
-                  <p style={{ paddingRight: "10px" }}>Description</p>
-                  <IoClose
-                    className="nav-button"
-                    onClick={() => {
-                      setOpenDescription(false);
-                    }}
-                  />
-                </div>
-                <p className="description-body" style={{ fontWeight: "200" }}>
-                  {props.metadata.post_description}
+      {!is_deleted ? (
+        <div className={`post-container-${is_wide ? "wide" : "tall"}`}>
+          <div className={`top-bar-${is_wide ? "wide" : "tall"}`}>
+            <div className="post-header">
+              {show_avatar ? (
+                <img
+                  onClick={() => redirectHandler(props.metadata.username)}
+                  className="avatar"
+                  src={props.metadata.user_avatar}
+                />
+              ) : (
+                <p
+                  className="username"
+                  onClick={() => redirectHandler(props.metadata.username)}
+                >
+                  {props.metadata.username}
                 </p>
-              </div>
-            ) : (
-              <PostNavigation
-                postId={props.postId}
-                reactions={props.reactions}
-                metadata={props.metadata}
-                comment_control={setOpenComments}
-                description_control={setOpenDescription}
-              />
-            )}
+              )}
+
+              <p>
+                {" "}
+                Created On:{" "}
+                {props.metadata.created_at.toString().substring(0, 10)}
+              </p>
+            </div>
+          </div>
+          <div className="post-body">
+            <div className="image">
+              <img src={props.src} ref={imageRef} draggable="false" />
+            </div>
+            <div className="post-actions">
+              {open_comments ? (
+                <div className="comments">
+                  <div className="comments-header">
+                    <p>Comments</p>
+                    <IoClose
+                      className="nav-button"
+                      onClick={() => {
+                        setOpenComments(false);
+                      }}
+                    />
+                  </div>
+                  <div className="create-comment">
+                    <form action={addComment}>
+                      <input
+                        placeholder="Write a comment..."
+                        className="comment-input"
+                        onChange={(event) => setNewComment(event.target.value)}
+                      />
+                      <button type="submit">
+                        <div className="send-icon">
+                          <IoIosSend />
+                        </div>
+                      </button>
+                    </form>
+                  </div>
+
+                  <ul className="comment-list">
+                    {optimistic_comments.map((comment, index) => (
+                      <li key={index}>
+                        <div className="comment">
+                          <div className="user-icon-container">
+                            <img
+                              onClick={() => redirectHandler(comment.username)}
+                              className="comment-user-avatar"
+                              src={comment.user_avatar}
+                              draggable="false"
+                            />
+                          </div>
+                          <div className="comment-username">
+                            {comment.username}
+                          </div>
+                          <div className="comment-text">{comment.comment}</div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : open_description ? (
+                <div className="description">
+                  <div className="description-header">
+                    <p style={{ paddingRight: "10px" }}>Description</p>
+                    <IoClose
+                      className="nav-button"
+                      onClick={() => {
+                        setOpenDescription(false);
+                      }}
+                    />
+                  </div>
+                  <p className="description-body" style={{ fontWeight: "200" }}>
+                    {props.metadata.post_description}
+                  </p>
+                </div>
+              ) : (
+                <PostNavigation
+                  postId={props.postId}
+                  src={props.src}
+                  reactions={props.reactions}
+                  metadata={props.metadata}
+                  comment_control={setOpenComments}
+                  description_control={setOpenDescription}
+                  deletion_control={setIsDeleted}
+                />
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="deleted-message">
+          Oops! Something went wrong.
+          <br />
+          <br /> This is most likely because the post you are trying to view or
+          interact with, has been deleted.
+        </div>
+      )}
     </div>
   );
 }

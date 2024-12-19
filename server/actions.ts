@@ -45,8 +45,9 @@ export async function add_comment_action(
 
   try {
     await create_comment(decoded_postId, userId, comment, time_of_comment);
+    return { success: true };
   } catch (error) {
-    throw new Error(error.message);
+    return { success: false };
   }
 }
 
@@ -77,8 +78,9 @@ export async function add_like_action(postId: string, timestamp: string) {
 
   try {
     await add_like(decoded_postId, userId, timestamp);
+    return { success: true };
   } catch (error) {
-    throw new Error(error.message);
+    return { success: false };
   }
 }
 
@@ -93,12 +95,13 @@ export async function remove_like_action(postId: string) {
 
   try {
     await remove_like(decoded_postId, userId);
+    return { success: true };
   } catch (error) {
-    throw new Error(error.message);
+    return { success: false };
   }
 }
 
-export async function delete_post_action(postId: string) {
+export async function delete_post_action(postId: string, imageURL: string) {
   const { userId } = await auth();
   if (!userId) {
     throw new Error("User not authenticated!");
@@ -107,8 +110,9 @@ export async function delete_post_action(postId: string) {
   const decoded_postId = await convert_from_UUID(postId);
 
   try {
-    await delete_post(decoded_postId);
+    await delete_post(decoded_postId, imageURL);
+    return { success: true };
   } catch (error) {
-    throw new Error(error.message);
+    return { success: false };
   }
 }

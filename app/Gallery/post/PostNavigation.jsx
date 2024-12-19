@@ -17,26 +17,33 @@ export default function PostNavigation(props) {
   const router = useRouter();
 
   function redirectHandler() {
+    setDeletePrompt(0);
     startTransition(() => {
       router.back();
     });
   }
 
   async function deletePostHandler() {
-    await delete_post_action(props.postId);
-    setDeletePrompt(false);
-    redirectHandler();
+    const response = await delete_post_action(props.postId, props.src);
+    if (!response.success) {
+      props.deletion_control(true);
+    }
+    setDeletePrompt(2);
   }
 
   return (
     <div className="navigation">
       <ul>
         <li>
-          <ReactionForm postId={props.postId} reactions={props.reactions} />
+          <ReactionForm
+            postId={props.postId}
+            reactions={props.reactions}
+            deletion_control={props.deletion_control}
+          />
         </li>
 
         {userId === props.metadata.user_id ? (
-          <li onClick={() => setDeletePrompt(true)}>
+          <li onClick={() => setDeletePrompt(1)}>
             <button className="nav-button">
               <AiFillDelete className="nav-icon" />
             </button>
@@ -54,11 +61,11 @@ export default function PostNavigation(props) {
           </button>
         </li>
       </ul>
-      {delete_prompt ? (
+      {delete_prompt === 1 ? (
         <div className="overlay-delete-prompt">
           <div className="delete-prompt-box">
             <button
-              onClick={() => setDeletePrompt(false)}
+              onClick={() => setDeletePrompt(0)}
               className="delete-prompt-exit-button"
             >
               <IoClose style={{ fontSize: "30" }} />
@@ -72,6 +79,28 @@ export default function PostNavigation(props) {
             >
               Delete Post
             </button>
+          </div>
+        </div>
+      ) : null}
+      {delete_prompt === 2 ? (
+        <div className="overlay-delete-prompt">
+          <div className="delete-prompt-box">
+            <button
+              onClick={redirectHandler}
+              className="delete-prompt-exit-button"
+            >
+              <IoClose style={{ fontSize: "30" }} />
+            </button>
+            <p
+              style={{
+                padding: "20px",
+                textAlign: "center",
+                color: " #f2f0ef",
+              }}
+            >
+              Post deleted successfully! Cached images will be removed in under
+              5 minutes.
+            </p>
           </div>
         </div>
       ) : null}

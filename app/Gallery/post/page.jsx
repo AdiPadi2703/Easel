@@ -91,14 +91,16 @@ export default async function Page({ searchParams }) {
     const decoded_postId = await convert_from_UUID(postId);
 
     try {
-      const response = unstable_cache(
-        async () => {
-          return get_comments_with_post_id(decoded_postId);
-        },
-        [`${postId}-comments`],
-        { revalidate: 10, tags: [`${postId}-comments`] }
-      );
-      result = await response();
+      // const response = unstable_cache(
+      //   async () => {
+      //     return get_comments_with_post_id(decoded_postId);
+      //   },
+      //   [`${postId}-comments`],
+      //   { revalidate: 10, tags: [`${postId}-comments`] }
+      // );
+      // result = await response();
+
+      result = await get_comments_with_post_id(decoded_postId);
     } catch (error) {
       throw new Error(error.message);
     }

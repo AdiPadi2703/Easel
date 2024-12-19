@@ -142,6 +142,10 @@
   border: none;
 }
 
+.comment-input:focus {
+  outline: none;
+}
+
 .create-comment button {
   width: 10%;
   height: 30px;
@@ -385,6 +389,18 @@
 .username:hover {
   font-weight: 500;
   cursor: pointer;
+}
+
+.deleted-message {
+  margin-top: 15rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f2f0ef;
+  text-align: center;
 }
 
 @media (max-width: 900px) {

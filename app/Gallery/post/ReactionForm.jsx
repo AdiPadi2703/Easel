@@ -35,10 +35,16 @@ export default function ReactionForm(props) {
     changeOptimisticReactionState("");
 
     if (current_reaction_state.has_reacted) {
-      await remove_like_action(props.postId);
+      const response = await remove_like_action(props.postId);
+      if (!response.success) {
+        props.deletion_control(true);
+      }
     } else {
       const timestamp = new Date().toISOString();
-      await add_like_action(props.postId, timestamp);
+      const response = await add_like_action(props.postId, timestamp);
+      if (!response.success) {
+        props.deletion_control(true);
+      }
     }
 
     setCurrentReactionState((current_state) => ({

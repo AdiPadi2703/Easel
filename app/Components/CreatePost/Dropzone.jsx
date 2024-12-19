@@ -72,8 +72,16 @@ function Dropzone() {
     } else if (success == 2) {
       return (
         <div>
-          <h3 style={{ fontSize: "18px", fontWeight: "200" }}>
-            Post Created Successfully!
+          <h3
+            style={{
+              fontSize: "18px",
+              fontWeight: "200",
+              textAlign: "center",
+              maxWidth: "400px",
+            }}
+          >
+            Post created successfully! It will be visible in the gallery in
+            about 5 minutes.
           </h3>
         </div>
       );
