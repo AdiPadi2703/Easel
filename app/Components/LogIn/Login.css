@@ -1,6 +1,5 @@
 .login-form {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   animation-name: fade-up;
@@ -91,6 +90,7 @@
 @media (min-width: 600px) {
   .login-form {
     margin-left: 4rem;
+    height: 95vh;
   }
 }
 

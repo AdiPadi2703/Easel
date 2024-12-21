@@ -1,6 +1,5 @@
 .signup-form {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   animation-name: fade-up;
@@ -85,6 +84,7 @@
 
 @media (min-width: 600px) {
   .signup-form {
+    height: 95vh;
     margin-left: 4rem;
   }
 }
