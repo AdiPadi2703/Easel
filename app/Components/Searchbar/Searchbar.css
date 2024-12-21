@@ -77,3 +77,9 @@
   font-size: 200%;
   animation: loading-animation 1s infinite;
 }
+
+@media (max-width: 600px) {
+  .searchbar input {
+    font-size: 12px;
+  }
+}

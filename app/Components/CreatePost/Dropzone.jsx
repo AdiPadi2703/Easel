@@ -80,8 +80,9 @@ function Dropzone() {
               maxWidth: "400px",
             }}
           >
-            Post created successfully! It will be visible in the gallery in
-            about 5 minutes.
+            Post created successfully!
+            <br />
+            <br /> It will be visible in the gallery in about 5 minutes.
           </h3>
         </div>
       );

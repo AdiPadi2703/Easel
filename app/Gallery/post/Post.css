@@ -331,7 +331,7 @@
   border-radius: 20px;
   height: min(200px, 80%);
   width: min(400px, 80%);
-  animation-name: zoom-in;
+  animation-name: fade-up;
   animation-duration: 0.5s;
 }
 
@@ -376,8 +376,22 @@
 
 .description-body {
   max-width: 400px;
+  max-height: 500px;
   text-wrap: wrap;
   word-wrap: break-word;
+  overflow-y: auto;
+}
+
+.description-body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.description-body::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+.description-body::-webkit-scrollbar-thumb {
+  background-color: #f2f0ef;
 }
 
 .comment-user-avatar:hover,

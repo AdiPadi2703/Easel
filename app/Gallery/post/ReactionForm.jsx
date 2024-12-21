@@ -16,8 +16,6 @@ export default function ReactionForm(props) {
       .includes(true),
   });
 
-  console.log(current_reaction_state);
-
   const [optimistic_reaction_state, changeOptimisticReactionState] =
     React.useOptimistic(
       current_reaction_state,

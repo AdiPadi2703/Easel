@@ -67,7 +67,7 @@
   width: min(400px, 80%);
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 20px;
-  animation-name: zoom-in;
+  animation-name: fade-up;
   animation-duration: 0.5s;
 }
 

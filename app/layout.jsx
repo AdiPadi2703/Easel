@@ -1,6 +1,5 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-import Footer from "./Components/Footer/Footer";
 
 export const metadata = {
   title: "Easel",
@@ -8,6 +7,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const year = new Date().getFullYear().toString();
   return (
     <html lang="en">
       <head>
@@ -17,10 +17,10 @@ export default function RootLayout({ children }) {
       </head>
       <ClerkProvider>
         <body>
-          <div className="holder">
-            <div id="root">{children}</div>
-            <Footer />
-          </div>
+          <div id="root">{children}</div>
+          <footer className="footer">
+            <p>Copyright © {year} Adithya Ubaradka</p>
+          </footer>
         </body>
       </ClerkProvider>
     </html>
