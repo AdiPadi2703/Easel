@@ -225,7 +225,6 @@
 }
 .svgs img {
   height: 90px;
-  max-width: 200px;
   background-color: white;
   margin: 10px;
 }
@@ -243,9 +242,11 @@
   flex-direction: column;
   padding: 30px;
 }
-.github-logo {
+
+.github a {
   padding: 20px;
 }
+
 .overlay-section {
   position: absolute;
   top: 0;
@@ -268,7 +269,18 @@
   .home-page-container {
     margin-top: 4rem;
   }
+  .svgs > * {
+    height: 80px;
+    width: 80px;
+  }
+  .home-nav-button-down {
+    bottom: 20px;
+  }
+  .home-nav-button-up {
+    top: 20px;
+  }
 }
+
 @media (max-width: 950px) {
   .feature-grid {
     display: flex;

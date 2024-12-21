@@ -19,7 +19,9 @@ export default function RootLayout({ children }) {
         <body>
           <div id="root">{children}</div>
           <footer className="footer">
-            <p>Copyright © {year} Adithya Ubaradka</p>
+            <p>
+              Copyright {"©"} {year} Adithya Ubaradka
+            </p>
           </footer>
         </body>
       </ClerkProvider>

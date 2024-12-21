@@ -251,7 +251,7 @@ export default function Home() {
             <div className="github">
               Check out the source code:
               <a href="https://github.com/AdiPadi2703/Easel">
-                <div className="github-logo">
+                <div>
                   <svg
                     width="98"
                     height="96"
