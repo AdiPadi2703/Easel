@@ -12,8 +12,8 @@ You can still run this on your local machine: <br>
 
 ## Technology Used
 
-Frontend: NextJS, CSS
-Backend: NextJS, PostgreSQL (Vercel), Blob (Vercel), Clerk, Ngrok (for testing webhooks)
+Frontend: Next.js, CSS <br><br>
+Backend: Next.js, PostgreSQL (Vercel), Blob (Vercel), Clerk, Ngrok (for testing webhooks)
 
 ## Features
 
