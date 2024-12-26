@@ -7,8 +7,8 @@ This is a simple art gallery where people can create and account, post there art
 <br>
 You can still run this on your local machine: <br>
 1. Just clone the repository 
-2. Add a .env file with all the environment variables (vercel postgres, vercel blob and clerk) <br>
-3. Set up the database (Schema provided in database.sql)
+2. Add a .env file with all the environment variables (Vercel Postgres, Vercel Blob and Clerk) <br>
+3. Set up the database (schema provided in database.sql)
 
 ## Technology Used
 
