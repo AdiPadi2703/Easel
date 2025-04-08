@@ -19,7 +19,7 @@ Backend: Next.js, PostgreSQL (Vercel), Blob (Vercel), Clerk, Ngrok (for testing 
 
 ### 1. User authentication:
 
-  Users can create their account using the traditional username, password, email feed, or use their gmail account.  This is facilitaed by Clerk.
+  Users can create their account using the traditional username, password and email, or use their gmail account.  This is facilitated by Clerk.
    
 ### 2. Restricted file upload:
 
