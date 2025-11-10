@@ -4,7 +4,7 @@
 
 ## Overview
 
-This is a simple art gallery where people can create and account, post there art and get feedback in the form of comments and/or likes.  <br><br>I mainly used this project to get started with full stack development.  The site was originally deployed to Vercel, but I took it down under the future prospect of the site being difficult to maintain.  All of the deployment logs are available in this repository.
+This is a simple art gallery where people can create and account, post there art and get feedback in the form of comments and/or likes.  <br><br>I mainly used this project to get started with full stack development.  The site was originally deployed to Vercel, but I took it down under the future prospect of the site being difficult to maintain.
 <br>
 <br>
 You can still run this on your local machine: <br>
